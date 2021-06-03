@@ -942,6 +942,90 @@ static trace_result trace_naive(const scene_model& scene, const bvh_scene& bvh,
   return {radiance, hit, hit_albedo, hit_normal};
 }
 
+// Furnace test.
+static trace_result trace_furnace(const scene_model& scene,
+    const bvh_scene& bvh, const trace_lights& lights, const ray3f& ray_,
+    rng_state& rng, const trace_params& params) {
+  // initialize
+  auto radiance   = zero3f;
+  auto weight     = vec3f{1, 1, 1};
+  auto ray        = ray_;
+  auto hit        = false;
+  auto hit_albedo = vec3f{0, 0, 0};
+  auto hit_normal = vec3f{0, 0, 0};
+  auto opbounce   = 0;
+
+  // trace  path
+  for (auto bounce = 0; bounce < params.bounces; bounce++) {
+    if (bounce > 0) {
+      radiance += weight * eval_environment(scene, ray.d);
+      break;
+    }
+    // intersect next point
+    auto intersection = intersect_bvh(bvh, scene, ray);
+    if (!intersection.hit) {
+      if (bounce > 0 || !params.envhidden)
+        radiance += weight * eval_environment(scene, ray.d);
+      break;
+    }
+
+    // prepare shading point
+    auto outgoing = -ray.d;
+    auto instance = scene.instances[intersection.instance];
+    auto element  = intersection.element;
+    auto uv       = intersection.uv;
+    auto position = eval_position(scene, instance, element, uv);
+    auto normal   = eval_shading_normal(scene, instance, element, uv, outgoing);
+    auto material = eval_material(scene, instance, element, uv);
+
+    // handle opacity
+    if (material.opacity < 1 && rand1f(rng) >= material.opacity) {
+      if (opbounce++ > 128) break;
+      ray = {position + ray.d * 1e-2f, ray.d};
+      bounce -= 1;
+      continue;
+    }
+
+    // set hit variables
+    if (bounce == 0) {
+      hit        = true;
+      hit_albedo = material.color;
+      hit_normal = normal;
+    }
+
+    // accumulate emission
+    radiance += weight * eval_emission(material, normal, outgoing);
+
+    // next direction
+    auto incoming = zero3f;
+    if (material.roughness != 0) {
+      incoming = sample_bsdfcos(
+          material, normal, outgoing, rand1f(rng), rand2f(rng));
+      weight *= eval_bsdfcos(material, normal, outgoing, incoming) /
+                sample_bsdfcos_pdf(material, normal, outgoing, incoming);
+    } else {
+      incoming = sample_delta(material, normal, outgoing, rand1f(rng));
+      weight *= eval_delta(material, normal, outgoing, incoming) /
+                sample_delta_pdf(material, normal, outgoing, incoming);
+    }
+
+    // check weight
+    if (weight == zero3f || !isfinite(weight)) break;
+
+    // russian roulette
+    if (bounce > 3) {
+      auto rr_prob = min((float)0.99, max(weight));
+      if (rand1f(rng) >= rr_prob) break;
+      weight *= 1 / rr_prob;
+    }
+
+    // setup next iteration
+    ray = {position, incoming};
+  }
+
+  return {radiance, hit, hit_albedo, hit_normal};
+}
+
 // Eyelight for quick previewing.
 static trace_result trace_eyelight(const scene_model& scene,
     const bvh_scene& bvh, const trace_lights& lights, const ray3f& ray_,
@@ -1104,6 +1188,7 @@ static sampler_func get_trace_sampler_func(const trace_params& params) {
     case trace_sampler_type::pathdirect: return trace_pathdirect;
     case trace_sampler_type::pathmis: return trace_pathmis;
     case trace_sampler_type::naive: return trace_naive;
+    case trace_sampler_type::furnace: return trace_furnace;
     case trace_sampler_type::eyelight: return trace_eyelight;
     case trace_sampler_type::falsecolor: return trace_falsecolor;
     default: {
@@ -1120,6 +1205,7 @@ bool is_sampler_lit(const trace_params& params) {
     case trace_sampler_type::pathdirect: return true;
     case trace_sampler_type::pathmis: return true;
     case trace_sampler_type::naive: return true;
+    case trace_sampler_type::furnace: return false;
     case trace_sampler_type::eyelight: return false;
     case trace_sampler_type::falsecolor: return false;
     default: {

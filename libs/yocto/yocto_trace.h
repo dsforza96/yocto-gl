@@ -76,6 +76,7 @@ enum struct trace_sampler_type {
   pathdirect,  // path tracing with direct
   pathmis,     // path tracing with mis
   naive,       // naive path tracing
+  furnace,     // furnace test
   eyelight,    // eyelight rendering
   falsecolor,  // false color rendering
 };
@@ -113,8 +114,8 @@ struct trace_params {
   bool                  denoise        = false;
 };
 
-inline const auto trace_sampler_names = std::vector<std::string>{
-    "path", "pathdirect", "pathmis", "naive", "eyelight", "falsecolor"};
+inline const auto trace_sampler_names = std::vector<std::string>{"path",
+    "pathdirect", "pathmis", "naive", "furnace", "eyelight", "falsecolor"};
 
 inline const auto trace_falsecolor_names = vector<string>{"position", "normal",
     "frontfacing", "gnormal", "gfrontfacing", "texcoord", "mtype", "color",

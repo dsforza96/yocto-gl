@@ -608,6 +608,13 @@ inline vec3f eval_metallic(const vec3f& color, float roughness,
          abs(dot(up_normal, incoming));
 }
 
+inline vec3f eval_metallic_with_compensation(const vec3f& color,
+    float roughness, const vec3f& normal, const vec3f& outgoing,
+    const vec3f& incoming) {
+  auto C = microfacet_compensation(color, roughness, normal, outgoing);
+  return C * eval_metallic(color, roughness, normal, outgoing, incoming);
+}
+
 // Sample a metal BRDF lobe.
 inline vec3f sample_metallic(const vec3f& color, float roughness,
     const vec3f& normal, const vec3f& outgoing, const vec2f& rn) {

@@ -83,6 +83,9 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::metallic) {
     return eval_metallic(
         material.color, material.roughness, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_with_compensation) {
+    return eval_metallic_with_compensation(
+        material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
@@ -132,6 +135,9 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::metallic) {
     return sample_metallic(
         material.color, material.roughness, normal, outgoing, rn);
+  } else if (material.type == scene_material_type::metallic_with_compensation) {
+    return sample_metallic(
+        material.color, material.roughness, normal, outgoing, rn);
   } else if (material.type == scene_material_type::transparent) {
     return sample_transparent(material.color, material.ior, material.roughness,
         normal, outgoing, rnl, rn);
@@ -179,6 +185,9 @@ static float sample_bsdfcos_pdf(const material_point& material,
     return sample_glossy_pdf(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic) {
+    return sample_metallic_pdf(
+        material.color, material.roughness, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_with_compensation) {
     return sample_metallic_pdf(
         material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {

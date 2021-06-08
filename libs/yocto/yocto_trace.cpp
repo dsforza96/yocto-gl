@@ -83,8 +83,14 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::metallic) {
     return eval_metallic(
         material.color, material.roughness, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::metallic_with_compensation) {
-    return eval_metallic_with_compensation(
+  } else if (material.type == scene_material_type::metallic_comp_fit) {
+    return eval_metallic_comp_fit(
+        material.color, material.roughness, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_comp_fit1) {
+    return eval_metallic_comp_fit1(
+        material.color, material.roughness, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_comp_tab) {
+    return eval_metallic_comp_tab(
         material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(material.color, material.ior, material.roughness,
@@ -108,6 +114,10 @@ static vec3f eval_delta(const material_point& material, const vec3f& normal,
   if (material.roughness != 0) return zero3f;
 
   if (material.type == scene_material_type::metallic) {
+    return eval_metallic(material.color, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_comp_fit ||
+             material.type == scene_material_type::metallic_comp_fit1 ||
+             material.type == scene_material_type::metallic_comp_tab) {
     return eval_metallic(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(
@@ -135,7 +145,9 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::metallic) {
     return sample_metallic(
         material.color, material.roughness, normal, outgoing, rn);
-  } else if (material.type == scene_material_type::metallic_with_compensation) {
+  } else if (material.type == scene_material_type::metallic_comp_fit ||
+             material.type == scene_material_type::metallic_comp_fit1 ||
+             material.type == scene_material_type::metallic_comp_tab) {
     return sample_metallic(
         material.color, material.roughness, normal, outgoing, rn);
   } else if (material.type == scene_material_type::transparent) {
@@ -160,6 +172,10 @@ static vec3f sample_delta(const material_point& material, const vec3f& normal,
   if (material.roughness != 0) return zero3f;
 
   if (material.type == scene_material_type::metallic) {
+    return sample_metallic(material.color, normal, outgoing);
+  } else if (material.type == scene_material_type::metallic_comp_fit ||
+             material.type == scene_material_type::metallic_comp_fit1 ||
+             material.type == scene_material_type::metallic_comp_tab) {
     return sample_metallic(material.color, normal, outgoing);
   } else if (material.type == scene_material_type::transparent) {
     return sample_transparent(
@@ -187,7 +203,9 @@ static float sample_bsdfcos_pdf(const material_point& material,
   } else if (material.type == scene_material_type::metallic) {
     return sample_metallic_pdf(
         material.color, material.roughness, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::metallic_with_compensation) {
+  } else if (material.type == scene_material_type::metallic_comp_fit ||
+             material.type == scene_material_type::metallic_comp_fit1 ||
+             material.type == scene_material_type::metallic_comp_tab) {
     return sample_metallic_pdf(
         material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
@@ -212,6 +230,10 @@ static float sample_delta_pdf(const material_point& material,
   if (material.roughness != 0) return 0;
 
   if (material.type == scene_material_type::metallic) {
+    return sample_metallic_pdf(material.color, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_comp_fit ||
+             material.type == scene_material_type::metallic_comp_fit1 ||
+             material.type == scene_material_type::metallic_comp_tab) {
     return sample_metallic_pdf(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return sample_tranparent_pdf(

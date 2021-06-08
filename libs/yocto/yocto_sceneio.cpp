@@ -2828,7 +2828,13 @@ static bool load_json_scene(const string& filename, scene_model& scene,
           } else if (key == "metallic") {
             if (!get_value(value, material.metallic))
               return parse_error(gname, name, key);
-          } else if (key == "metallic_with_compensation") {
+          } else if (key == "metallic_comp_fit") {
+            if (!get_value(value, material.metallic))
+              return parse_error(gname, name, key);
+          } else if (key == "metallic_comp_fit1") {
+            if (!get_value(value, material.metallic))
+              return parse_error(gname, name, key);
+          } else if (key == "metallic_comp_tab") {
             if (!get_value(value, material.metallic))
               return parse_error(gname, name, key);
           } else if (key == "roughness") {

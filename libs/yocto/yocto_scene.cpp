@@ -258,6 +258,10 @@ bool is_volumetric(const scene_material& material) {
 bool is_delta(const material_point& material) {
   return (material.type == scene_material_type::metallic &&
              material.roughness == 0) ||
+         ((material.type == scene_material_type::metallic_comp_fit ||
+              material.type == scene_material_type::metallic_comp_fit1 ||
+              material.type == scene_material_type::metallic_comp_tab) &&
+             material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&

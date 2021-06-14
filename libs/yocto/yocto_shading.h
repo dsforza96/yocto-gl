@@ -727,12 +727,11 @@ static const auto albedo_lut = vector<float>{0.9633789f, 0.99560547f,
 // Microfacet energy compensation (E(cos(w)))
 inline vec3f microfacet_compensation_tab(const vec3f& color, float roughness,
     const vec3f& normal, const vec3f& outgoing) {
-  auto s = abs(dot(normal, outgoing)) * ALBEDO_LUT_SIZE;
-  auto t = sqrt(roughness) * ALBEDO_LUT_SIZE;
+  auto s = abs(dot(normal, outgoing)) * (ALBEDO_LUT_SIZE - 1);
+  auto t = sqrt(roughness) * (ALBEDO_LUT_SIZE - 1);
 
   // get image coordinates and residuals
-  auto i  = clamp((int)s, 0, ALBEDO_LUT_SIZE - 1);
-  auto j  = clamp((int)t, 0, ALBEDO_LUT_SIZE - 1);
+  auto i = (int)s, j = (int)t;
   auto ii = min(i + 1, ALBEDO_LUT_SIZE - 1);
   auto jj = min(j + 1, ALBEDO_LUT_SIZE - 1);
   auto u = s - i, v = t - j;

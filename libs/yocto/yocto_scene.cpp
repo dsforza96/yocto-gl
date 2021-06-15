@@ -242,6 +242,11 @@ material_point eval_material(const scene_model& scene,
 bool is_delta(const scene_material& material) {
   return (material.type == scene_material_type::metallic &&
              material.roughness == 0) ||
+         ((material.type == scene_material_type::metallic_comp_fit ||
+              material.type == scene_material_type::metallic_comp_fit1 ||
+              material.type == scene_material_type::metallic_comp_tab ||
+              material.type == scene_material_type::metallic_comp_mytab) &&
+             material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&
@@ -260,7 +265,8 @@ bool is_delta(const material_point& material) {
              material.roughness == 0) ||
          ((material.type == scene_material_type::metallic_comp_fit ||
               material.type == scene_material_type::metallic_comp_fit1 ||
-              material.type == scene_material_type::metallic_comp_tab) &&
+              material.type == scene_material_type::metallic_comp_tab ||
+              material.type == scene_material_type::metallic_comp_mytab) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||

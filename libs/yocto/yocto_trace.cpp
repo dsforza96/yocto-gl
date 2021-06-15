@@ -92,6 +92,9 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::metallic_comp_tab) {
     return eval_metallic_comp_tab(
         material.color, material.roughness, normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::metallic_comp_mytab) {
+    return eval_metallic_comp_mytab(
+        material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
@@ -117,7 +120,8 @@ static vec3f eval_delta(const material_point& material, const vec3f& normal,
     return eval_metallic(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic_comp_fit ||
              material.type == scene_material_type::metallic_comp_fit1 ||
-             material.type == scene_material_type::metallic_comp_tab) {
+             material.type == scene_material_type::metallic_comp_tab ||
+             material.type == scene_material_type::metallic_comp_mytab) {
     return eval_metallic(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(
@@ -147,7 +151,8 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
         material.color, material.roughness, normal, outgoing, rn);
   } else if (material.type == scene_material_type::metallic_comp_fit ||
              material.type == scene_material_type::metallic_comp_fit1 ||
-             material.type == scene_material_type::metallic_comp_tab) {
+             material.type == scene_material_type::metallic_comp_tab ||
+             material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic(
         material.color, material.roughness, normal, outgoing, rn);
   } else if (material.type == scene_material_type::transparent) {
@@ -175,7 +180,8 @@ static vec3f sample_delta(const material_point& material, const vec3f& normal,
     return sample_metallic(material.color, normal, outgoing);
   } else if (material.type == scene_material_type::metallic_comp_fit ||
              material.type == scene_material_type::metallic_comp_fit1 ||
-             material.type == scene_material_type::metallic_comp_tab) {
+             material.type == scene_material_type::metallic_comp_tab ||
+             material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic(material.color, normal, outgoing);
   } else if (material.type == scene_material_type::transparent) {
     return sample_transparent(
@@ -205,7 +211,8 @@ static float sample_bsdfcos_pdf(const material_point& material,
         material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic_comp_fit ||
              material.type == scene_material_type::metallic_comp_fit1 ||
-             material.type == scene_material_type::metallic_comp_tab) {
+             material.type == scene_material_type::metallic_comp_tab ||
+             material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic_pdf(
         material.color, material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
@@ -233,7 +240,8 @@ static float sample_delta_pdf(const material_point& material,
     return sample_metallic_pdf(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic_comp_fit ||
              material.type == scene_material_type::metallic_comp_fit1 ||
-             material.type == scene_material_type::metallic_comp_tab) {
+             material.type == scene_material_type::metallic_comp_tab ||
+             material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic_pdf(material.color, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::transparent) {
     return sample_tranparent_pdf(

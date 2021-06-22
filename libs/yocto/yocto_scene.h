@@ -111,7 +111,9 @@ enum struct scene_material_type {
   metallic_comp_tab,
   metallic_comp_mytab,
   transparent,
+  transparent_comp,
   refractive,
+  refractive_comp,
   subsurface,
   volume,
   gltfpbr
@@ -121,8 +123,9 @@ enum struct scene_material_type {
 // Enum labels
 inline const auto scene_material_names = std::vector<std::string>{"matte",
     "glossy", "metallic", "metallic_comp_fit", "metallic_comp_fit1",
-    "metallic_comp_tab", "metallic_comp_mytab", "transparent", "refractive",
-    "subsurface", "volume", "gltfpbr"};
+    "metallic_comp_tab", "metallic_comp_mytab", "transparent",
+    "transparent_comp", "refractive", "refractive_comp", "subsurface", "volume",
+    "gltfpbr"};
 
 // Material for surfaces, lines and triangles.
 // For surfaces, uses a microfacet model with thin sheet transmission.

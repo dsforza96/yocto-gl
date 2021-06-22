@@ -98,9 +98,15 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::transparent) {
     return eval_transparent(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::transparent_comp) {
+    return eval_transparent_comp(material.color, material.ior,
+        material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::refractive) {
     return eval_refractive(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
+  } else if (material.type == scene_material_type::refractive_comp) {
+    return eval_refractive_comp(material.color, material.ior,
+        material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::subsurface) {
     return eval_refractive(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
@@ -123,10 +129,12 @@ static vec3f eval_delta(const material_point& material, const vec3f& normal,
              material.type == scene_material_type::metallic_comp_tab ||
              material.type == scene_material_type::metallic_comp_mytab) {
     return eval_metallic(material.color, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::transparent) {
+  } else if (material.type == scene_material_type::transparent ||
+             material.type == scene_material_type::transparent_comp) {
     return eval_transparent(
         material.color, material.ior, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::refractive) {
+  } else if (material.type == scene_material_type::refractive ||
+             material.type == scene_material_type::refractive_comp) {
     return eval_refractive(
         material.color, material.ior, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::volume) {
@@ -155,10 +163,12 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
              material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic(
         material.color, material.roughness, normal, outgoing, rn);
-  } else if (material.type == scene_material_type::transparent) {
+  } else if (material.type == scene_material_type::transparent ||
+             material.type == scene_material_type::transparent_comp) {
     return sample_transparent(material.color, material.ior, material.roughness,
         normal, outgoing, rnl, rn);
-  } else if (material.type == scene_material_type::refractive) {
+  } else if (material.type == scene_material_type::refractive ||
+             material.type == scene_material_type::refractive_comp) {
     return sample_refractive(material.color, material.ior, material.roughness,
         normal, outgoing, rnl, rn);
   } else if (material.type == scene_material_type::subsurface) {
@@ -183,10 +193,12 @@ static vec3f sample_delta(const material_point& material, const vec3f& normal,
              material.type == scene_material_type::metallic_comp_tab ||
              material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic(material.color, normal, outgoing);
-  } else if (material.type == scene_material_type::transparent) {
+  } else if (material.type == scene_material_type::transparent ||
+             material.type == scene_material_type::transparent_comp) {
     return sample_transparent(
         material.color, material.ior, normal, outgoing, rnl);
-  } else if (material.type == scene_material_type::refractive) {
+  } else if (material.type == scene_material_type::refractive ||
+             material.type == scene_material_type::refractive_comp) {
     return sample_refractive(
         material.color, material.ior, normal, outgoing, rnl);
   } else if (material.type == scene_material_type::volume) {
@@ -215,10 +227,12 @@ static float sample_bsdfcos_pdf(const material_point& material,
              material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic_pdf(
         material.color, material.roughness, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::transparent) {
+  } else if (material.type == scene_material_type::transparent ||
+             material.type == scene_material_type::transparent_comp) {
     return sample_tranparent_pdf(material.color, material.ior,
         material.roughness, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::refractive) {
+  } else if (material.type == scene_material_type::refractive ||
+             material.type == scene_material_type::refractive_comp) {
     return sample_refractive_pdf(material.color, material.ior,
         material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::subsurface) {
@@ -243,10 +257,12 @@ static float sample_delta_pdf(const material_point& material,
              material.type == scene_material_type::metallic_comp_tab ||
              material.type == scene_material_type::metallic_comp_mytab) {
     return sample_metallic_pdf(material.color, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::transparent) {
+  } else if (material.type == scene_material_type::transparent ||
+             material.type == scene_material_type::transparent_comp) {
     return sample_tranparent_pdf(
         material.color, material.ior, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::refractive) {
+  } else if (material.type == scene_material_type::refractive ||
+             material.type == scene_material_type::refractive_comp) {
     return sample_refractive_pdf(
         material.color, material.ior, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::volume) {
@@ -984,10 +1000,11 @@ static trace_result trace_furnace(const scene_model& scene,
   auto hit_albedo = vec3f{0, 0, 0};
   auto hit_normal = vec3f{0, 0, 0};
   auto opbounce   = 0;
+  auto in_volume  = false;
 
   // trace  path
   for (auto bounce = 0; bounce < params.bounces; bounce++) {
-    if (bounce > 0) {
+    if (bounce > 0 && !in_volume) {
       radiance += weight * eval_environment(scene, ray.d);
       break;
     }
@@ -1048,6 +1065,10 @@ static trace_result trace_furnace(const scene_model& scene,
       if (rand1f(rng) >= rr_prob) break;
       weight *= 1 / rr_prob;
     }
+
+    // update volume stack
+    if (dot(normal, outgoing) * dot(normal, incoming) < 0)
+      in_volume = !in_volume;
 
     // setup next iteration
     ray = {position, incoming};

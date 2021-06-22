@@ -249,12 +249,17 @@ bool is_delta(const scene_material& material) {
              material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
+         (material.type == scene_material_type::refractive_comp &&
+             material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&
+             material.roughness == 0) ||
+         (material.type == scene_material_type::transparent_comp &&
              material.roughness == 0) ||
          (material.type == scene_material_type::volume);
 }
 bool is_volumetric(const scene_material& material) {
   return material.type == scene_material_type::refractive ||
+         material.type == scene_material_type::refractive_comp ||
          material.type == scene_material_type::volume ||
          material.type == scene_material_type::subsurface;
 }
@@ -270,12 +275,17 @@ bool is_delta(const material_point& material) {
              material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
+         (material.type == scene_material_type::refractive_comp &&
+             material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&
+             material.roughness == 0) ||
+         (material.type == scene_material_type::transparent_comp &&
              material.roughness == 0) ||
          (material.type == scene_material_type::volume);
 }
 bool has_volume(const material_point& material) {
   return material.type == scene_material_type::refractive ||
+         material.type == scene_material_type::refractive_comp ||
          material.type == scene_material_type::volume ||
          material.type == scene_material_type::subsurface;
 }
@@ -948,7 +958,9 @@ vec3f eval_shading_normal(const scene_model& scene,
     if (material.normal_tex != invalidid) {
       normal = eval_normalmap(scene, instance, element, uv);
     }
-    if (material.type == scene_material_type::refractive) return normal;
+    if (material.type == scene_material_type::refractive ||
+        material.type == scene_material_type::refractive_comp)
+      return normal;
     return dot(normal, outgoing) >= 0 ? normal : -normal;
   } else if (!shape.lines.empty()) {
     auto normal = eval_normal(scene, instance, element, uv);

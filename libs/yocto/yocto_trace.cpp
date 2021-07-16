@@ -1009,6 +1009,7 @@ static trace_result trace_furnace(const scene_model& scene,
       radiance += weight * eval_environment(scene, ray.d);
       break;
     }
+
     // intersect next point
     auto intersection = intersect_bvh(bvh, scene, ray);
     if (!intersection.hit) {

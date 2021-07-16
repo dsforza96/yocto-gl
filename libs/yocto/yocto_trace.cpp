@@ -152,7 +152,7 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
   if (material.type == scene_material_type::matte) {
     return sample_matte(material.color, normal, outgoing, rn);
   } else if (material.type == scene_material_type::glossy) {
-    return sample_specular(material.color, material.ior, material.roughness,
+    return sample_glossy(material.color, material.ior, material.roughness,
         normal, outgoing, rnl, rn);
   } else if (material.type == scene_material_type::metallic) {
     return sample_metallic(
@@ -1004,6 +1004,7 @@ static trace_result trace_furnace(const scene_model& scene,
 
   // trace  path
   for (auto bounce = 0; bounce < params.bounces; bounce++) {
+    // exit loop
     if (bounce > 0 && !in_volume) {
       radiance += weight * eval_environment(scene, ray.d);
       break;
@@ -1048,10 +1049,12 @@ static trace_result trace_furnace(const scene_model& scene,
     if (material.roughness != 0) {
       incoming = sample_bsdfcos(
           material, normal, outgoing, rand1f(rng), rand2f(rng));
+      if (incoming == zero3f) break;
       weight *= eval_bsdfcos(material, normal, outgoing, incoming) /
                 sample_bsdfcos_pdf(material, normal, outgoing, incoming);
     } else {
       incoming = sample_delta(material, normal, outgoing, rand1f(rng));
+      if (incoming == zero3f) break;
       weight *= eval_delta(material, normal, outgoing, incoming) /
                 sample_delta_pdf(material, normal, outgoing, incoming);
     }
@@ -1256,7 +1259,7 @@ bool is_sampler_lit(const trace_params& params) {
     case trace_sampler_type::pathdirect: return true;
     case trace_sampler_type::pathmis: return true;
     case trace_sampler_type::naive: return true;
-    case trace_sampler_type::furnace: return false;
+    case trace_sampler_type::furnace: return true;
     case trace_sampler_type::eyelight: return false;
     case trace_sampler_type::falsecolor: return false;
     default: {

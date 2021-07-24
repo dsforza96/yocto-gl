@@ -80,6 +80,9 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
   } else if (material.type == scene_material_type::glossy) {
     return eval_glossy(material.color, material.ior, material.roughness, normal,
         outgoing, incoming);
+  } else if (material.type == scene_material_type::glossy_comp) {
+    return eval_glossy_comp(material.color, material.ior, material.roughness,
+        normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic) {
     return eval_metallic(
         material.color, material.roughness, normal, outgoing, incoming);
@@ -151,7 +154,8 @@ static vec3f sample_bsdfcos(const material_point& material, const vec3f& normal,
 
   if (material.type == scene_material_type::matte) {
     return sample_matte(material.color, normal, outgoing, rn);
-  } else if (material.type == scene_material_type::glossy) {
+  } else if (material.type == scene_material_type::glossy ||
+             material.type == scene_material_type::glossy_comp) {
     return sample_glossy(material.color, material.ior, material.roughness,
         normal, outgoing, rnl, rn);
   } else if (material.type == scene_material_type::metallic) {
@@ -215,7 +219,8 @@ static float sample_bsdfcos_pdf(const material_point& material,
 
   if (material.type == scene_material_type::matte) {
     return sample_matte_pdf(material.color, normal, outgoing, incoming);
-  } else if (material.type == scene_material_type::glossy) {
+  } else if (material.type == scene_material_type::glossy ||
+             material.type == scene_material_type::glossy_comp) {
     return sample_glossy_pdf(material.color, material.ior, material.roughness,
         normal, outgoing, incoming);
   } else if (material.type == scene_material_type::metallic) {

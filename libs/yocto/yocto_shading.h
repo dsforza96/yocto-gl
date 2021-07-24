@@ -1327,6 +1327,22 @@ inline vec3f eval_glossy(const vec3f& color, float ior, float roughness,
              abs(dot(up_normal, incoming));
 }
 
+inline vec3f eval_glossy_comp(const vec3f& color, float ior, float roughness,
+    const vec3f& normal, const vec3f& outgoing, const vec3f& incoming) {
+  if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
+  auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
+  auto F1        = fresnel_dielectric(ior, up_normal, outgoing);
+  auto halfway   = normalize(incoming + outgoing);
+  auto F         = fresnel_dielectric(ior, halfway, incoming);
+  auto D         = microfacet_distribution(roughness, up_normal, halfway);
+  auto G         = microfacet_shadowing(
+      roughness, up_normal, halfway, outgoing, incoming);
+  return color * (1 - F1) / pif * abs(dot(up_normal, incoming)) +
+         vec3f{1, 1, 1} * F * D * G /
+             (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
+             abs(dot(up_normal, incoming));
+}
+
 // Sample a specular BRDF lobe.
 inline vec3f sample_glossy(const vec3f& color, float ior, float roughness,
     const vec3f& normal, const vec3f& outgoing, float rnl, const vec2f& rn) {

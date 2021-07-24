@@ -231,7 +231,8 @@ material_point eval_material(const scene_model& scene,
   // fix roughness
   if (point.type == scene_material_type::matte ||
       point.type == scene_material_type::gltfpbr ||
-      point.type == scene_material_type::glossy) {
+      point.type == scene_material_type::glossy ||
+      point.type == scene_material_type::glossy_comp) {
     point.roughness = clamp(point.roughness, min_roughness, 1.0f);
   }
 
@@ -1037,7 +1038,8 @@ material_point eval_material(const scene_model& scene,
   // fix roughness
   if (point.type == scene_material_type::matte ||
       point.type == scene_material_type::gltfpbr ||
-      point.type == scene_material_type::glossy) {
+      point.type == scene_material_type::glossy ||
+      point.type == scene_material_type::glossy_comp) {
     point.roughness = clamp(point.roughness, min_roughness, 1.0f);
   } else if (material.type == scene_material_type::volume) {
     point.roughness = 0;

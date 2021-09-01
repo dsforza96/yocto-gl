@@ -210,7 +210,7 @@
       ],
       "material": "comp-mytab-1"
     },
-    "comp-myfit-0": {
+    "comp-fit-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -226,9 +226,9 @@
         -0.2,
         0
       ],
-      "material": "comp-myfit-0"
+      "material": "comp-fit-0"
     },
-    "comp-myfit-0.25": {
+    "comp-fit-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -244,9 +244,9 @@
         -0.2,
         0
       ],
-      "material": "comp-myfit-0.25"
+      "material": "comp-fit-0.25"
     },
-    "comp-myfit-0.5": {
+    "comp-fit-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -262,9 +262,9 @@
         -0.2,
         0
       ],
-      "material": "comp-myfit-0.5"
+      "material": "comp-fit-0.5"
     },
-    "comp-myfit-0.75": {
+    "comp-fit-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -280,9 +280,9 @@
         -0.2,
         0
       ],
-      "material": "comp-myfit-0.75"
+      "material": "comp-fit-0.75"
     },
-    "comp-myfit-1": {
+    "comp-fit-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -298,7 +298,7 @@
         -0.2,
         0
       ],
-      "material": "comp-myfit-1"
+      "material": "comp-fit-1"
     }
   },
   "materials": {
@@ -392,8 +392,8 @@
       ],
       "roughness": 1
     },
-    "comp-myfit-0": {
-      "type": "glossy_comp_myfit",
+    "comp-fit-0": {
+      "type": "glossy_comp_fit",
       "color": [
         1,
         1,
@@ -401,8 +401,8 @@
       ],
       "roughness": 0
     },
-    "comp-myfit-0.25": {
-      "type": "glossy_comp_myfit",
+    "comp-fit-0.25": {
+      "type": "glossy_comp_fit",
       "color": [
         1,
         1,
@@ -410,8 +410,8 @@
       ],
       "roughness": 0.25
     },
-    "comp-myfit-0.5": {
-      "type": "glossy_comp_myfit",
+    "comp-fit-0.5": {
+      "type": "glossy_comp_fit",
       "color": [
         1,
         1,
@@ -419,8 +419,8 @@
       ],
       "roughness": 0.5
     },
-    "comp-myfit-0.75": {
-      "type": "glossy_comp_myfit",
+    "comp-fit-0.75": {
+      "type": "glossy_comp_fit",
       "color": [
         1,
         1,
@@ -428,8 +428,8 @@
       ],
       "roughness": 0.75
     },
-    "comp-myfit-1": {
-      "type": "glossy_comp_myfit",
+    "comp-fit-1": {
+      "type": "glossy_comp_fit",
       "color": [
         1,
         1,

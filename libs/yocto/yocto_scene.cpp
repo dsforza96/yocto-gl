@@ -232,7 +232,8 @@ material_point eval_material(const scene_model& scene,
   if (point.type == scene_material_type::matte ||
       point.type == scene_material_type::gltfpbr ||
       point.type == scene_material_type::glossy ||
-      point.type == scene_material_type::glossy_comp) {
+      point.type == scene_material_type::glossy_comp ||
+      point.type == scene_material_type::glossy_comp_fit) {
     point.roughness = clamp(point.roughness, min_roughness, 1.0f);
   }
 
@@ -246,21 +247,25 @@ bool is_delta(const scene_material& material) {
          ((material.type == scene_material_type::metallic_comp_fit ||
               material.type == scene_material_type::metallic_comp_fit1 ||
               material.type == scene_material_type::metallic_comp_tab ||
-              material.type == scene_material_type::metallic_comp_mytab) &&
+              material.type == scene_material_type::metallic_comp_mytab ||
+              material.type == scene_material_type::metallic_comp_myfit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
-         (material.type == scene_material_type::refractive_comp &&
+         ((material.type == scene_material_type::refractive_comp ||
+              material.type == scene_material_type::refractive_comp_fit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&
              material.roughness == 0) ||
-         (material.type == scene_material_type::transparent_comp &&
+         ((material.type == scene_material_type::transparent_comp ||
+              material.type == scene_material_type::transparent_comp_fit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::volume);
 }
 bool is_volumetric(const scene_material& material) {
   return material.type == scene_material_type::refractive ||
          material.type == scene_material_type::refractive_comp ||
+         material.type == scene_material_type::refractive_comp_fit ||
          material.type == scene_material_type::volume ||
          material.type == scene_material_type::subsurface;
 }
@@ -272,21 +277,25 @@ bool is_delta(const material_point& material) {
          ((material.type == scene_material_type::metallic_comp_fit ||
               material.type == scene_material_type::metallic_comp_fit1 ||
               material.type == scene_material_type::metallic_comp_tab ||
-              material.type == scene_material_type::metallic_comp_mytab) &&
+              material.type == scene_material_type::metallic_comp_mytab ||
+              material.type == scene_material_type::metallic_comp_myfit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::refractive &&
              material.roughness == 0) ||
-         (material.type == scene_material_type::refractive_comp &&
+         ((material.type == scene_material_type::refractive_comp ||
+              material.type == scene_material_type::refractive_comp_fit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::transparent &&
              material.roughness == 0) ||
-         (material.type == scene_material_type::transparent_comp &&
+         ((material.type == scene_material_type::transparent_comp ||
+              material.type == scene_material_type::transparent_comp_fit) &&
              material.roughness == 0) ||
          (material.type == scene_material_type::volume);
 }
 bool has_volume(const material_point& material) {
   return material.type == scene_material_type::refractive ||
          material.type == scene_material_type::refractive_comp ||
+         material.type == scene_material_type::refractive_comp_fit ||
          material.type == scene_material_type::volume ||
          material.type == scene_material_type::subsurface;
 }
@@ -960,7 +969,8 @@ vec3f eval_shading_normal(const scene_model& scene,
       normal = eval_normalmap(scene, instance, element, uv);
     }
     if (material.type == scene_material_type::refractive ||
-        material.type == scene_material_type::refractive_comp)
+        material.type == scene_material_type::refractive_comp ||
+        material.type == scene_material_type::refractive_comp_fit)
       return normal;
     return dot(normal, outgoing) >= 0 ? normal : -normal;
   } else if (!shape.lines.empty()) {
@@ -1039,7 +1049,8 @@ material_point eval_material(const scene_model& scene,
   if (point.type == scene_material_type::matte ||
       point.type == scene_material_type::gltfpbr ||
       point.type == scene_material_type::glossy ||
-      point.type == scene_material_type::glossy_comp) {
+      point.type == scene_material_type::glossy_comp ||
+      point.type == scene_material_type::glossy_comp_fit) {
     point.roughness = clamp(point.roughness, min_roughness, 1.0f);
   } else if (material.type == scene_material_type::volume) {
     point.roughness = 0;

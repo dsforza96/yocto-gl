@@ -565,6 +565,43 @@ inline vec3f microfacet_compensation_fit1(const vec3f& color, float roughness,
   return 1 + color * (1 - E) / E;
 }
 
+inline float eval_ratpoly(const float coef[], float x, float y) {
+  auto x2 = x * x, y2 = y * y;
+  auto x3 = x2 * x, y3 = y2 * y;
+
+  return (coef[0] + coef[1] * x + coef[2] * y + coef[3] * x2 + coef[4] * x * y +
+             coef[5] * y2 + coef[6] * x3 + coef[7] * x2 * y + coef[8] * x * y2 +
+             coef[9] * y3) /
+         (1 + coef[10] * x + coef[11] * y + coef[12] * x2 + coef[13] * x * y +
+             coef[14] * y2 + coef[15] * x3 + coef[16] * x2 * y +
+             coef[17] * x * y2 + coef[18] * y3);
+}
+
+inline vec3f microfacet_compensation_conductors_myfit(const vec3f& color,
+    float roughness, const vec3f& normal, const vec3f& outgoing) {
+  const float coef[19] = {1.01202782, -11.1084138, 13.68932726, 46.63441392,
+      -56.78561075, 17.38577426, -29.2033844, 30.94339247, -5.38305905,
+      -4.72530367, -10.45175028, 13.88865122, 43.49596666, -57.01339516,
+      16.76996746, -21.80566626, 32.0408972, -5.48296756, -4.29104947};
+
+  auto alpha     = sqrt(roughness);
+  auto cos_theta = abs(dot(normal, outgoing));
+
+  auto E = eval_ratpoly(coef, alpha, cos_theta);
+
+  return 1 + color * (1 - E) / E;
+}
+
+inline float microfacet_compensation_dielectrics_fit(const float coef[],
+    float roughness, const vec3f& normal, const vec3f& outgoing) {
+  auto alpha     = sqrt(roughness);
+  auto cos_theta = abs(dot(normal, outgoing));
+
+  auto E = eval_ratpoly(coef, alpha, cos_theta);
+
+  return 1 / E;
+}
+
 #define ALBEDO_LUT_SIZE 32
 
 // https://github.com/DassaultSystemes-Technology/EnterprisePBRShadingModel/tree/master/res/GGX_E.exr
@@ -1400,6 +1437,36 @@ inline vec3f eval_glossy_comp(const vec3f& color, float ior, float roughness,
              abs(dot(up_normal, incoming));
 }
 
+inline vec3f eval_glossy_comp_fit(const vec3f& color, float ior,
+    float roughness, const vec3f& normal, const vec3f& outgoing,
+    const vec3f& incoming) {
+  const float coef[19] = {1.01202782, -11.1084138, 13.68932726, 46.63441392,
+      -56.78561075, 17.38577426, -29.2033844, 30.94339247, -5.38305905,
+      -4.72530367, -10.45175028, 13.88865122, 43.49596666, -57.01339516,
+      16.76996746, -21.80566626, 32.0408972, -5.48296756, -4.29104947};
+
+  const float coef1[19] = {8.89585301e-01, 5.00441837e+07, 8.40969374e+06,
+      -3.13496885e+07, -7.22332609e+07, -1.53584041e+07, 3.64380179e+07,
+      -2.80018587e+06, 6.73301042e+07, 1.07329518e+07, 5.63697112e+07,
+      8.45331780e+06, -5.98282629e+07, 9.58584677e+07, 3.21313142e+07,
+      7.44019928e+08, -6.67058671e+08, 9.40451592e+08, 5.42106148e+07};
+
+  if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
+  auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
+  auto E1 = eval_ratpoly(coef1, sqrt(roughness), abs(dot(up_normal, outgoing)));
+  auto halfway = normalize(incoming + outgoing);
+  auto C       = microfacet_compensation_dielectrics_fit(
+      coef, roughness, normal, outgoing);
+  auto F = fresnel_dielectric(ior, halfway, incoming);
+  auto D = microfacet_distribution(roughness, up_normal, halfway);
+  auto G = microfacet_shadowing(
+      roughness, up_normal, halfway, outgoing, incoming);
+  return color * (1 - E1) / pif * abs(dot(up_normal, incoming)) +
+         vec3f{1, 1, 1} * C * F * D * G /
+             (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
+             abs(dot(up_normal, incoming));
+}
+
 // Sample a specular BRDF lobe.
 inline vec3f sample_glossy(const vec3f& color, float ior, float roughness,
     const vec3f& normal, const vec3f& outgoing, float rnl, const vec2f& rn) {
@@ -1464,6 +1531,13 @@ inline vec3f eval_metallic_comp_mytab(const vec3f& color, float roughness,
     const vec3f& normal, const vec3f& outgoing, const vec3f& incoming) {
   auto C = microfacet_compensation_conductors(
       my_albedo_lut, color, roughness, normal, outgoing);
+  return C * eval_metallic(color, roughness, normal, outgoing, incoming);
+}
+
+inline vec3f eval_metallic_comp_myfit(const vec3f& color, float roughness,
+    const vec3f& normal, const vec3f& outgoing, const vec3f& incoming) {
+  auto C = microfacet_compensation_conductors_myfit(
+      color, roughness, normal, outgoing);
   return C * eval_metallic(color, roughness, normal, outgoing, incoming);
 }
 
@@ -1653,6 +1727,20 @@ inline vec3f eval_transparent_comp(const vec3f& color, float ior,
          eval_transparent(color, ior, roughness, normal, outgoing, incoming);
 }
 
+inline vec3f eval_transparent_comp_fit(const vec3f& color, float ior,
+    float roughness, const vec3f& normal, const vec3f& outgoing,
+    const vec3f& incoming) {
+  const float coef[19] = {1.01202782, -11.1084138, 13.68932726, 46.63441392,
+      -56.78561075, 17.38577426, -29.2033844, 30.94339247, -5.38305905,
+      -4.72530367, -10.45175028, 13.88865122, 43.49596666, -57.01339516,
+      16.76996746, -21.80566626, 32.0408972, -5.48296756, -4.29104947};
+
+  auto C = microfacet_compensation_dielectrics_fit(
+      coef, roughness, normal, outgoing);
+  return C *
+         eval_transparent(color, ior, roughness, normal, outgoing, incoming);
+}
+
 // Sample a transmission BRDF lobe.
 inline vec3f sample_transparent(const vec3f& color, float ior, float roughness,
     const vec3f& normal, const vec3f& outgoing, float rnl, const vec2f& rn) {
@@ -1761,6 +1849,25 @@ inline vec3f eval_refractive_comp(const vec3f& color, float ior,
                                           : leaving_albedo_lut;
   auto C     = microfacet_compensation_dielectrics(
       E_lut, roughness, normal, outgoing);
+  return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
+}
+
+inline vec3f eval_refractive_comp_fit(const vec3f& color, float ior,
+    float roughness, const vec3f& normal, const vec3f& outgoing,
+    const vec3f& incoming) {
+  const float coef_enter[19] = {0.93711318, -16.81396138, 57.22484827,
+      150.7591695, -22.43015898, 63.54906969, -105.19391156, 107.87869957,
+      -61.3559168, 362.56408522, -17.93440339, 58.92919979, 154.45385715,
+      -3.60847169, 236.8398643, 42.72010604, 334.6576626, -221.2406847,
+      747.20499577};
+  const float coef_leave[19] = {0.96590701, -1.08408001, -2.84708444,
+      0.31808247, 2.64481521, 2.42553297, -0.03557559, -0.25455856, -1.62276176,
+      -0.45154484, -0.77237694, -3.18956396, 0.18165658, 1.84204267, 3.22758544,
+      0.03927024, -0.17124532, -1.09783895, -0.9955068};
+
+  auto coef = dot(normal, outgoing) >= 0 ? coef_enter : coef_leave;
+  auto C    = microfacet_compensation_dielectrics_fit(
+      coef, roughness, normal, outgoing);
   return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
 }
 

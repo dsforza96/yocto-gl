@@ -2840,6 +2840,9 @@ static bool load_json_scene(const string& filename, scene_model& scene,
           } else if (key == "metallic_comp_mytab") {
             if (!get_value(value, material.metallic))
               return parse_error(gname, name, key);
+          } else if (key == "metallic_comp_myfit") {
+            if (!get_value(value, material.metallic))
+              return parse_error(gname, name, key);
           } else if (key == "roughness") {
             if (!get_value(value, material.roughness))
               return parse_error(gname, name, key);

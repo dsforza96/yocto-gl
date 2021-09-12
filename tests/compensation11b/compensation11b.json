@@ -31,7 +31,7 @@
   },
   "instances": {
     "no-comp-0": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -49,7 +49,7 @@
       "material": "no-comp-0"
     },
     "no-comp-0.25": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -67,7 +67,7 @@
       "material": "no-comp-0.25"
     },
     "no-comp-0.5": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -85,7 +85,7 @@
       "material": "no-comp-0.5"
     },
     "no-comp-0.75": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -103,7 +103,7 @@
       "material": "no-comp-0.75"
     },
     "no-comp-1": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -121,7 +121,7 @@
       "material": "no-comp-1"
     },
     "comp-tab-0": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -139,7 +139,7 @@
       "material": "comp-tab-0"
     },
     "comp-tab-0.25": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -157,7 +157,7 @@
       "material": "comp-tab-0.25"
     },
     "comp-tab-0.5": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -175,7 +175,7 @@
       "material": "comp-tab-0.5"
     },
     "comp-tab-0.75": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -193,7 +193,7 @@
       "material": "comp-tab-0.75"
     },
     "comp-tab-1": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -211,7 +211,7 @@
       "material": "comp-tab-1"
     },
     "comp-fit-0": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -229,7 +229,7 @@
       "material": "comp-fit-0"
     },
     "comp-fit-0.25": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -247,7 +247,7 @@
       "material": "comp-fit-0.25"
     },
     "comp-fit-0.5": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -265,7 +265,7 @@
       "material": "comp-fit-0.5"
     },
     "comp-fit-0.75": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,
@@ -283,7 +283,7 @@
       "material": "comp-fit-0.75"
     },
     "comp-fit-1": {
-      "shape": "sphere",
+      "shape": "slab",
       "frame": [
         1,
         0,

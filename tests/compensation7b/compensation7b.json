@@ -30,7 +30,7 @@
     }
   },
   "instances": {
-    "F0-0-0": {
+    "ior-1-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -46,9 +46,9 @@
         0.4,
         0
       ],
-      "material": "F0-0-0"
+      "material": "ior-1-0"
     },
-    "F0-0-0.25": {
+    "ior-1-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -64,9 +64,9 @@
         0.4,
         0
       ],
-      "material": "F0-0-0.25"
+      "material": "ior-1-0.25"
     },
-    "F0-0-0.5": {
+    "ior-1-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -82,9 +82,9 @@
         0.4,
         0
       ],
-      "material": "F0-0-0.5"
+      "material": "ior-1-0.5"
     },
-    "F0-0-0.75": {
+    "ior-1-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -100,9 +100,9 @@
         0.4,
         0
       ],
-      "material": "F0-0-0.75"
+      "material": "ior-1-0.75"
     },
-    "F0-0-1": {
+    "ior-1-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -118,9 +118,9 @@
         0.4,
         0
       ],
-      "material": "F0-0-1"
+      "material": "ior-1-1"
     },
-    "F0-0.25-0": {
+    "ior-1.5-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -136,9 +136,9 @@
         0.2,
         0
       ],
-      "material": "F0-0.25-0"
+      "material": "ior-1.5-0"
     },
-    "F0-0.25-0.25": {
+    "ior-1.5-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -154,9 +154,9 @@
         0.2,
         0
       ],
-      "material": "F0-0.25-0.25"
+      "material": "ior-1.5-0.25"
     },
-    "F0-0.25-0.5": {
+    "ior-1.5-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -172,9 +172,9 @@
         0.2,
         0
       ],
-      "material": "F0-0.25-0.5"
+      "material": "ior-1.5-0.5"
     },
-    "F0-0.25-0.75": {
+    "ior-1.5-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -190,9 +190,9 @@
         0.2,
         0
       ],
-      "material": "F0-0.25-0.75"
+      "material": "ior-1.5-0.75"
     },
-    "F0-0.25-1": {
+    "ior-1.5-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -208,9 +208,9 @@
         0.2,
         0
       ],
-      "material": "F0-0.25-1"
+      "material": "ior-1.5-1"
     },
-    "F0-0.5-0": {
+    "ior-2-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -226,9 +226,9 @@
         0,
         0
       ],
-      "material": "F0-0.5-0"
+      "material": "ior-2-0"
     },
-    "F0-0.5-0.25": {
+    "ior-2-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -244,9 +244,9 @@
         0,
         0
       ],
-      "material": "F0-0.5-0.25"
+      "material": "ior-2-0.25"
     },
-    "F0-0.5-0.5": {
+    "ior-2-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -262,9 +262,9 @@
         0,
         0
       ],
-      "material": "F0-0.5-0.5"
+      "material": "ior-2-0.5"
     },
-    "F0-0.5-0.75": {
+    "ior-2-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -280,9 +280,9 @@
         0,
         0
       ],
-      "material": "F0-0.5-0.75"
+      "material": "ior-2-0.75"
     },
-    "F0-0.5-1": {
+    "ior-2-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -298,9 +298,9 @@
         0,
         0
       ],
-      "material": "F0-0.5-1"
+      "material": "ior-2-1"
     },
-    "F0-0.75-0": {
+    "ior-2.5-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -316,9 +316,9 @@
         -0.2,
         0
       ],
-      "material": "F0-0.75-0"
+      "material": "ior-2.5-0"
     },
-    "F0-0.75-0.25": {
+    "ior-2.5-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -334,9 +334,9 @@
         -0.2,
         0
       ],
-      "material": "F0-0.75-0.25"
+      "material": "ior-2.5-0.25"
     },
-    "F0-0.75-0.5": {
+    "ior-2.5-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -352,9 +352,9 @@
         -0.2,
         0
       ],
-      "material": "F0-0.75-0.5"
+      "material": "ior-2.5-0.5"
     },
-    "F0-0.75-0.75": {
+    "ior-2.5-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -370,9 +370,9 @@
         -0.2,
         0
       ],
-      "material": "F0-0.75-0.75"
+      "material": "ior-2.5-0.75"
     },
-    "F0-0.75-1": {
+    "ior-2.5-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -388,9 +388,9 @@
         -0.2,
         0
       ],
-      "material": "F0-0.75-1"
+      "material": "ior-2.5-1"
     },
-    "F0-1-0": {
+    "ior-3-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -406,9 +406,9 @@
         -0.4,
         0
       ],
-      "material": "F0-1-0"
+      "material": "ior-3-0"
     },
-    "F0-1-0.25": {
+    "ior-3-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -424,9 +424,9 @@
         -0.4,
         0
       ],
-      "material": "F0-1-0.25"
+      "material": "ior-3-0.25"
     },
-    "F0-1-0.5": {
+    "ior-3-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -442,9 +442,9 @@
         -0.4,
         0
       ],
-      "material": "F0-1-0.5"
+      "material": "ior-3-0.5"
     },
-    "F0-1-0.75": {
+    "ior-3-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -460,9 +460,9 @@
         -0.4,
         0
       ],
-      "material": "F0-1-0.75"
+      "material": "ior-3-0.75"
     },
-    "F0-1-1": {
+    "ior-3-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -478,62 +478,212 @@
         -0.4,
         0
       ],
-      "material": "F0-1-1"
+      "material": "ior-3-1"
     }
   },
   "materials": {
-    "F0-0-0": {
-      "type": "glossy",
+    "ior-1-0": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
         1
       ],
       "roughness": 0,
-      "ior": 1
+      "ior": 1.05
     },
-    "F0-0-0.25": {
-      "type": "glossy",
+    "ior-1-0.25": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
         1
       ],
       "roughness": 0.25,
-      "ior": 1
+      "ior": 1.05
     },
-    "F0-0-0.5": {
-      "type": "glossy",
+    "ior-1-0.5": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
         1
       ],
       "roughness": 0.5,
-      "ior": 1
+      "ior": 1.05
     },
-    "F0-0-0.75": {
-      "type": "glossy",
+    "ior-1-0.75": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
         1
       ],
       "roughness": 0.75,
-      "ior": 1
+      "ior": 1.05
     },
-    "F0-0-1": {
-      "type": "glossy",
+    "ior-1-1": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
         1
       ],
       "roughness": 1,
-      "ior": 1
+      "ior": 1.05
     },
-    "F0-0.25-0": {
-      "type": "glossy",
+    "ior-1.5-0": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 1.5
+    },
+    "ior-1.5-0.25": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 1.5
+    },
+    "ior-1.5-0.5": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 1.5
+    },
+    "ior-1.5-0.75": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 1.5
+    },
+    "ior-1.5-1": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 1.5
+    },
+    "ior-2-0": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 2
+    },
+    "ior-2-0.25": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 2
+    },
+    "ior-2-0.5": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 2
+    },
+    "ior-2-0.75": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 2
+    },
+    "ior-2-1": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 2
+    },
+    "ior-2.5-0": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 2.5
+    },
+    "ior-2.5-0.25": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 2.5
+    },
+    "ior-2.5-0.5": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 2.5
+    },
+    "ior-2.5-0.75": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 2.5
+    },
+    "ior-2.5-1": {
+      "type": "refractive_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 2.5
+    },
+    "ior-3-0": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -542,8 +692,8 @@
       "roughness": 0,
       "ior": 3
     },
-    "F0-0.25-0.25": {
-      "type": "glossy",
+    "ior-3-0.25": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -552,8 +702,8 @@
       "roughness": 0.25,
       "ior": 3
     },
-    "F0-0.25-0.5": {
-      "type": "glossy",
+    "ior-3-0.5": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -562,8 +712,8 @@
       "roughness": 0.5,
       "ior": 3
     },
-    "F0-0.25-0.75": {
-      "type": "glossy",
+    "ior-3-0.75": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -572,8 +722,8 @@
       "roughness": 0.75,
       "ior": 3
     },
-    "F0-0.25-1": {
-      "type": "glossy",
+    "ior-3-1": {
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -581,156 +731,6 @@
       ],
       "roughness": 1,
       "ior": 3
-    },
-    "F0-0.5-0": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0,
-      "ior": 5.82842712
-    },
-    "F0-0.5-0.25": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.25,
-      "ior": 5.82842712
-    },
-    "F0-0.5-0.5": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.5,
-      "ior": 5.82842712
-    },
-    "F0-0.5-0.75": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.75,
-      "ior": 5.82842712
-    },
-    "F0-0.5-1": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 1,
-      "ior": 5.82842712
-    },
-    "F0-0.75-0": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0,
-      "ior": 13.92820323
-    },
-    "F0-0.75-0.25": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.25,
-      "ior": 13.92820323
-    },
-    "F0-0.75-0.5": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.5,
-      "ior": 13.92820323
-    },
-    "F0-0.75-0.75": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.75,
-      "ior": 13.92820323
-    },
-    "F0-0.75-1": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 1,
-      "ior": 13.92820323
-    },
-    "F0-1-0": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0,
-      "ior": 397.99748742
-    },
-    "F0-1-0.25": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.25,
-      "ior": 397.99748742
-    },
-    "F0-1-0.5": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.5,
-      "ior": 397.99748742
-    },
-    "F0-1-0.75": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.75,
-      "ior": 397.99748742
-    },
-    "F0-1-1": {
-      "type": "glossy",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 1,
-      "ior": 397.99748742
     }
   }
 }

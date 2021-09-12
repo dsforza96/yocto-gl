@@ -120,7 +120,7 @@
       ],
       "material": "no-comp-1"
     },
-    "comp-tab-0": {
+    "comp-mytab-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -136,9 +136,9 @@
         0,
         0
       ],
-      "material": "comp-tab-0"
+      "material": "comp-mytab-0"
     },
-    "comp-tab-0.25": {
+    "comp-mytab-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -154,9 +154,9 @@
         0,
         0
       ],
-      "material": "comp-tab-0.25"
+      "material": "comp-mytab-0.25"
     },
-    "comp-tab-0.5": {
+    "comp-mytab-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -172,9 +172,9 @@
         0,
         0
       ],
-      "material": "comp-tab-0.5"
+      "material": "comp-mytab-0.5"
     },
-    "comp-tab-0.75": {
+    "comp-mytab-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -190,9 +190,9 @@
         0,
         0
       ],
-      "material": "comp-tab-0.75"
+      "material": "comp-mytab-0.75"
     },
-    "comp-tab-1": {
+    "comp-mytab-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -208,9 +208,9 @@
         0,
         0
       ],
-      "material": "comp-tab-1"
+      "material": "comp-mytab-1"
     },
-    "comp-fit-0": {
+    "comp-myfit-0": {
       "shape": "sphere",
       "frame": [
         1,
@@ -226,9 +226,9 @@
         -0.2,
         0
       ],
-      "material": "comp-fit-0"
+      "material": "comp-myfit-0"
     },
-    "comp-fit-0.25": {
+    "comp-myfit-0.25": {
       "shape": "sphere",
       "frame": [
         1,
@@ -244,9 +244,9 @@
         -0.2,
         0
       ],
-      "material": "comp-fit-0.25"
+      "material": "comp-myfit-0.25"
     },
-    "comp-fit-0.5": {
+    "comp-myfit-0.5": {
       "shape": "sphere",
       "frame": [
         1,
@@ -262,9 +262,9 @@
         -0.2,
         0
       ],
-      "material": "comp-fit-0.5"
+      "material": "comp-myfit-0.5"
     },
-    "comp-fit-0.75": {
+    "comp-myfit-0.75": {
       "shape": "sphere",
       "frame": [
         1,
@@ -280,9 +280,9 @@
         -0.2,
         0
       ],
-      "material": "comp-fit-0.75"
+      "material": "comp-myfit-0.75"
     },
-    "comp-fit-1": {
+    "comp-myfit-1": {
       "shape": "sphere",
       "frame": [
         1,
@@ -298,12 +298,12 @@
         -0.2,
         0
       ],
-      "material": "comp-fit-1"
+      "material": "comp-myfit-1"
     }
   },
   "materials": {
     "no-comp-0": {
-      "type": "refractive",
+      "type": "metallic",
       "color": [
         1,
         1,
@@ -312,7 +312,7 @@
       "roughness": 0
     },
     "no-comp-0.25": {
-      "type": "refractive",
+      "type": "metallic",
       "color": [
         1,
         1,
@@ -321,7 +321,7 @@
       "roughness": 0.25
     },
     "no-comp-0.5": {
-      "type": "refractive",
+      "type": "metallic",
       "color": [
         1,
         1,
@@ -330,7 +330,7 @@
       "roughness": 0.5
     },
     "no-comp-0.75": {
-      "type": "refractive",
+      "type": "metallic",
       "color": [
         1,
         1,
@@ -339,7 +339,7 @@
       "roughness": 0.75
     },
     "no-comp-1": {
-      "type": "refractive",
+      "type": "metallic",
       "color": [
         1,
         1,
@@ -347,8 +347,8 @@
       ],
       "roughness": 1
     },
-    "comp-tab-0": {
-      "type": "refractive_comp",
+    "comp-mytab-0": {
+      "type": "metallic_comp_mytab",
       "color": [
         1,
         1,
@@ -356,8 +356,8 @@
       ],
       "roughness": 0
     },
-    "comp-tab-0.25": {
-      "type": "refractive_comp",
+    "comp-mytab-0.25": {
+      "type": "metallic_comp_mytab",
       "color": [
         1,
         1,
@@ -365,8 +365,8 @@
       ],
       "roughness": 0.25
     },
-    "comp-tab-0.5": {
-      "type": "refractive_comp",
+    "comp-mytab-0.5": {
+      "type": "metallic_comp_mytab",
       "color": [
         1,
         1,
@@ -374,8 +374,8 @@
       ],
       "roughness": 0.5
     },
-    "comp-tab-0.75": {
-      "type": "refractive_comp",
+    "comp-mytab-0.75": {
+      "type": "metallic_comp_mytab",
       "color": [
         1,
         1,
@@ -383,8 +383,8 @@
       ],
       "roughness": 0.75
     },
-    "comp-tab-1": {
-      "type": "refractive_comp",
+    "comp-mytab-1": {
+      "type": "metallic_comp_mytab",
       "color": [
         1,
         1,
@@ -392,8 +392,8 @@
       ],
       "roughness": 1
     },
-    "comp-fit-0": {
-      "type": "refractive_comp_fit",
+    "comp-myfit-0": {
+      "type": "metallic_comp_myfit",
       "color": [
         1,
         1,
@@ -401,8 +401,8 @@
       ],
       "roughness": 0
     },
-    "comp-fit-0.25": {
-      "type": "refractive_comp_fit",
+    "comp-myfit-0.25": {
+      "type": "metallic_comp_myfit",
       "color": [
         1,
         1,
@@ -410,8 +410,8 @@
       ],
       "roughness": 0.25
     },
-    "comp-fit-0.5": {
-      "type": "refractive_comp_fit",
+    "comp-myfit-0.5": {
+      "type": "metallic_comp_myfit",
       "color": [
         1,
         1,
@@ -419,8 +419,8 @@
       ],
       "roughness": 0.5
     },
-    "comp-fit-0.75": {
-      "type": "refractive_comp_fit",
+    "comp-myfit-0.75": {
+      "type": "metallic_comp_myfit",
       "color": [
         1,
         1,
@@ -428,8 +428,8 @@
       ],
       "roughness": 0.75
     },
-    "comp-fit-1": {
-      "type": "refractive_comp_fit",
+    "comp-myfit-1": {
+      "type": "metallic_comp_myfit",
       "color": [
         1,
         1,

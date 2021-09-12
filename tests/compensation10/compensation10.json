@@ -303,7 +303,7 @@
   },
   "materials": {
     "no-comp-0": {
-      "type": "refractive",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -312,7 +312,7 @@
       "roughness": 0
     },
     "no-comp-0.25": {
-      "type": "refractive",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -321,7 +321,7 @@
       "roughness": 0.25
     },
     "no-comp-0.5": {
-      "type": "refractive",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -330,7 +330,7 @@
       "roughness": 0.5
     },
     "no-comp-0.75": {
-      "type": "refractive",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -339,7 +339,7 @@
       "roughness": 0.75
     },
     "no-comp-1": {
-      "type": "refractive",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -348,7 +348,7 @@
       "roughness": 1
     },
     "comp-tab-0": {
-      "type": "refractive_comp",
+      "type": "transparent_comp",
       "color": [
         1,
         1,
@@ -357,7 +357,7 @@
       "roughness": 0
     },
     "comp-tab-0.25": {
-      "type": "refractive_comp",
+      "type": "transparent_comp",
       "color": [
         1,
         1,
@@ -366,7 +366,7 @@
       "roughness": 0.25
     },
     "comp-tab-0.5": {
-      "type": "refractive_comp",
+      "type": "transparent_comp",
       "color": [
         1,
         1,
@@ -375,7 +375,7 @@
       "roughness": 0.5
     },
     "comp-tab-0.75": {
-      "type": "refractive_comp",
+      "type": "transparent_comp",
       "color": [
         1,
         1,
@@ -384,7 +384,7 @@
       "roughness": 0.75
     },
     "comp-tab-1": {
-      "type": "refractive_comp",
+      "type": "transparent_comp",
       "color": [
         1,
         1,
@@ -393,7 +393,7 @@
       "roughness": 1
     },
     "comp-fit-0": {
-      "type": "refractive_comp_fit",
+      "type": "transparent_comp_fit",
       "color": [
         1,
         1,
@@ -402,7 +402,7 @@
       "roughness": 0
     },
     "comp-fit-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "transparent_comp_fit",
       "color": [
         1,
         1,
@@ -411,7 +411,7 @@
       "roughness": 0.25
     },
     "comp-fit-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "transparent_comp_fit",
       "color": [
         1,
         1,
@@ -420,7 +420,7 @@
       "roughness": 0.5
     },
     "comp-fit-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "transparent_comp_fit",
       "color": [
         1,
         1,
@@ -429,7 +429,7 @@
       "roughness": 0.75
     },
     "comp-fit-1": {
-      "type": "refractive_comp_fit",
+      "type": "transparent_comp_fit",
       "color": [
         1,
         1,

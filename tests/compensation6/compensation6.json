@@ -483,7 +483,7 @@
   },
   "materials": {
     "no-comp-0": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -493,7 +493,7 @@
       "ior": 1
     },
     "no-comp-0.25": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -503,7 +503,7 @@
       "ior": 1
     },
     "no-comp-0.5": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -513,7 +513,7 @@
       "ior": 1
     },
     "no-comp-0.75": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -523,7 +523,7 @@
       "ior": 1
     },
     "no-comp-1": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -533,7 +533,7 @@
       "ior": 1
     },
     "comp-fit-0": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -543,7 +543,7 @@
       "ior": 3
     },
     "comp-fit-0.25": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -553,7 +553,7 @@
       "ior": 3
     },
     "comp-fit-0.5": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -563,7 +563,7 @@
       "ior": 3
     },
     "comp-fit-0.75": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -573,7 +573,7 @@
       "ior": 3
     },
     "comp-fit-1": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -583,7 +583,7 @@
       "ior": 3
     },
     "comp-fit1-0": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -593,7 +593,7 @@
       "ior": 5.82842712
     },
     "comp-fit1-0.25": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -603,7 +603,7 @@
       "ior": 5.82842712
     },
     "comp-fit1-0.5": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -613,7 +613,7 @@
       "ior": 5.82842712
     },
     "comp-fit1-0.75": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -623,7 +623,7 @@
       "ior": 5.82842712
     },
     "comp-fit1-1": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -633,7 +633,7 @@
       "ior": 5.82842712
     },
     "comp-tab-0": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -643,7 +643,7 @@
       "ior": 13.92820323
     },
     "comp-tab-0.25": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -653,7 +653,7 @@
       "ior": 13.92820323
     },
     "comp-tab-0.5": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -663,7 +663,7 @@
       "ior": 13.92820323
     },
     "comp-tab-0.75": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -673,7 +673,7 @@
       "ior": 13.92820323
     },
     "comp-tab-1": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -683,7 +683,7 @@
       "ior": 13.92820323
     },
     "comp-mytab-0": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -693,7 +693,7 @@
       "ior": 397.99748742
     },
     "comp-mytab-0.25": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -703,7 +703,7 @@
       "ior": 397.99748742
     },
     "comp-mytab-0.5": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -713,7 +713,7 @@
       "ior": 397.99748742
     },
     "comp-mytab-0.75": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,
@@ -723,7 +723,7 @@
       "ior": 397.99748742
     },
     "comp-mytab-1": {
-      "type": "glossy_comp",
+      "type": "transparent",
       "color": [
         1,
         1,

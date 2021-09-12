@@ -6,7 +6,7 @@
     "default": {
       "lens": 0.1,
       "aperture": 0.0,
-      "aspect": 1.66667,
+      "aspect": 1,
       "lookat": [
         0,
         0.075,
@@ -43,7 +43,7 @@
         0,
         1,
         -0.4,
-        0.2,
+        0.4,
         0
       ],
       "material": "no-comp-0"
@@ -61,7 +61,7 @@
         0,
         1,
         -0.2,
-        0.2,
+        0.4,
         0
       ],
       "material": "no-comp-0.25"
@@ -79,7 +79,7 @@
         0,
         1,
         0,
-        0.2,
+        0.4,
         0
       ],
       "material": "no-comp-0.5"
@@ -97,7 +97,7 @@
         0,
         1,
         0.2,
-        0.2,
+        0.4,
         0
       ],
       "material": "no-comp-0.75"
@@ -115,10 +115,280 @@
         0,
         1,
         0.4,
-        0.2,
+        0.4,
         0
       ],
       "material": "no-comp-1"
+    },
+    "comp-fit-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0.2,
+        0
+      ],
+      "material": "comp-fit-0"
+    },
+    "comp-fit-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0.2,
+        0
+      ],
+      "material": "comp-fit-0.25"
+    },
+    "comp-fit-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.2,
+        0
+      ],
+      "material": "comp-fit-0.5"
+    },
+    "comp-fit-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0.2,
+        0
+      ],
+      "material": "comp-fit-0.75"
+    },
+    "comp-fit-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0.2,
+        0
+      ],
+      "material": "comp-fit-1"
+    },
+    "comp-fit1-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0,
+        0
+      ],
+      "material": "comp-fit1-0"
+    },
+    "comp-fit1-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0,
+        0
+      ],
+      "material": "comp-fit1-0.25"
+    },
+    "comp-fit1-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "material": "comp-fit1-0.5"
+    },
+    "comp-fit1-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0,
+        0
+      ],
+      "material": "comp-fit1-0.75"
+    },
+    "comp-fit1-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0,
+        0
+      ],
+      "material": "comp-fit1-1"
+    },
+    "comp-tab-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0"
+    },
+    "comp-tab-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.25"
+    },
+    "comp-tab-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.5"
+    },
+    "comp-tab-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.75"
+    },
+    "comp-tab-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-1"
     },
     "comp-mytab-0": {
       "shape": "sphere",
@@ -133,7 +403,7 @@
         0,
         1,
         -0.4,
-        0,
+        -0.4,
         0
       ],
       "material": "comp-mytab-0"
@@ -151,7 +421,7 @@
         0,
         1,
         -0.2,
-        0,
+        -0.4,
         0
       ],
       "material": "comp-mytab-0.25"
@@ -169,7 +439,7 @@
         0,
         1,
         0,
-        0,
+        -0.4,
         0
       ],
       "material": "comp-mytab-0.5"
@@ -187,7 +457,7 @@
         0,
         1,
         0.2,
-        0,
+        -0.4,
         0
       ],
       "material": "comp-mytab-0.75"
@@ -205,237 +475,262 @@
         0,
         1,
         0.4,
-        0,
+        -0.4,
         0
       ],
       "material": "comp-mytab-1"
-    },
-    "comp-myfit-0": {
-      "shape": "sphere",
-      "frame": [
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        -0.4,
-        -0.2,
-        0
-      ],
-      "material": "comp-myfit-0"
-    },
-    "comp-myfit-0.25": {
-      "shape": "sphere",
-      "frame": [
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        -0.2,
-        -0.2,
-        0
-      ],
-      "material": "comp-myfit-0.25"
-    },
-    "comp-myfit-0.5": {
-      "shape": "sphere",
-      "frame": [
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        -0.2,
-        0
-      ],
-      "material": "comp-myfit-0.5"
-    },
-    "comp-myfit-0.75": {
-      "shape": "sphere",
-      "frame": [
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0.2,
-        -0.2,
-        0
-      ],
-      "material": "comp-myfit-0.75"
-    },
-    "comp-myfit-1": {
-      "shape": "sphere",
-      "frame": [
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0.4,
-        -0.2,
-        0
-      ],
-      "material": "comp-myfit-1"
     }
   },
   "materials": {
     "no-comp-0": {
-      "type": "metallic",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0
+      "roughness": 0,
+      "ior": 1
     },
     "no-comp-0.25": {
-      "type": "metallic",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.25
+      "roughness": 0.25,
+      "ior": 1
     },
     "no-comp-0.5": {
-      "type": "metallic",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.5
+      "roughness": 0.5,
+      "ior": 1
     },
     "no-comp-0.75": {
-      "type": "metallic",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.75
+      "roughness": 0.75,
+      "ior": 1
     },
     "no-comp-1": {
-      "type": "metallic",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 1
+      "roughness": 1,
+      "ior": 1
+    },
+    "comp-fit-0": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 3
+    },
+    "comp-fit-0.25": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 3
+    },
+    "comp-fit-0.5": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 3
+    },
+    "comp-fit-0.75": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 3
+    },
+    "comp-fit-1": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 3
+    },
+    "comp-fit1-0": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 5.82842712
+    },
+    "comp-fit1-0.25": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 5.82842712
+    },
+    "comp-fit1-0.5": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 5.82842712
+    },
+    "comp-fit1-0.75": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 5.82842712
+    },
+    "comp-fit1-1": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 5.82842712
+    },
+    "comp-tab-0": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0,
+      "ior": 13.92820323
+    },
+    "comp-tab-0.25": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25,
+      "ior": 13.92820323
+    },
+    "comp-tab-0.5": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5,
+      "ior": 13.92820323
+    },
+    "comp-tab-0.75": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75,
+      "ior": 13.92820323
+    },
+    "comp-tab-1": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1,
+      "ior": 13.92820323
     },
     "comp-mytab-0": {
-      "type": "metallic_comp_mytab",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0
+      "roughness": 0,
+      "ior": 397.99748742
     },
     "comp-mytab-0.25": {
-      "type": "metallic_comp_mytab",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.25
+      "roughness": 0.25,
+      "ior": 397.99748742
     },
     "comp-mytab-0.5": {
-      "type": "metallic_comp_mytab",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.5
+      "roughness": 0.5,
+      "ior": 397.99748742
     },
     "comp-mytab-0.75": {
-      "type": "metallic_comp_mytab",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.75
+      "roughness": 0.75,
+      "ior": 397.99748742
     },
     "comp-mytab-1": {
-      "type": "metallic_comp_mytab",
+      "type": "glossy",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 1
-    },
-    "comp-myfit-0": {
-      "type": "metallic_comp_myfit",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0
-    },
-    "comp-myfit-0.25": {
-      "type": "metallic_comp_myfit",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.25
-    },
-    "comp-myfit-0.5": {
-      "type": "metallic_comp_myfit",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.5
-    },
-    "comp-myfit-0.75": {
-      "type": "metallic_comp_myfit",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 0.75
-    },
-    "comp-myfit-1": {
-      "type": "metallic_comp_myfit",
-      "color": [
-        1,
-        1,
-        1
-      ],
-      "roughness": 1
+      "roughness": 1,
+      "ior": 397.99748742
     }
   }
 }

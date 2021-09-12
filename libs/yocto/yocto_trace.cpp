@@ -1098,11 +1098,11 @@ static trace_result trace_furnace(const scene_model& scene,
     if (weight == zero3f || !isfinite(weight)) break;
 
     // russian roulette
-    // if (bounce > 3) {
-    //   auto rr_prob = min((float)0.99, max(weight));
-    //   if (rand1f(rng) >= rr_prob) break;
-    //   weight *= 1 / rr_prob;
-    // }
+    if (bounce > 3) {
+      auto rr_prob = min((float)0.99, max(weight));
+      if (rand1f(rng) >= rr_prob) break;
+      weight *= 1 / rr_prob;
+    }
 
     // update volume stack
     if (dot(normal, outgoing) * dot(normal, incoming) < 0)

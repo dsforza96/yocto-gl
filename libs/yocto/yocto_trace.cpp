@@ -120,7 +120,7 @@ static vec3f eval_bsdfcos(const material_point& material, const vec3f& normal,
     return eval_refractive_comp(material.color, material.ior,
         material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::refractive_comp_fit) {
-    return eval_refractive_comp_fit_slices2(material.color, material.ior,
+    return eval_refractive_comp_fit_3d(material.color, material.ior,
         material.roughness, normal, outgoing, incoming);
   } else if (material.type == scene_material_type::subsurface) {
     return eval_refractive(material.color, material.ior, material.roughness,
@@ -1009,11 +1009,11 @@ static trace_result trace_naive(const scene_model& scene, const bvh_scene& bvh,
     if (weight == zero3f || !isfinite(weight)) break;
 
     // russian roulette
-    if (bounce > 3) {
-      auto rr_prob = min((float)0.99, max(weight));
-      if (rand1f(rng) >= rr_prob) break;
-      weight *= 1 / rr_prob;
-    }
+    // if (bounce > 3) {
+    //   auto rr_prob = min((float)0.99, max(weight));
+    //   if (rand1f(rng) >= rr_prob) break;
+    //   weight *= 1 / rr_prob;
+    // }
 
     // setup next iteration
     ray = {position, incoming};

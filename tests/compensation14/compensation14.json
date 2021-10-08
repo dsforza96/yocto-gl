@@ -483,7 +483,7 @@
   },
   "materials": {
     "ior-1-0": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -493,7 +493,7 @@
       "ior": 1.25
     },
     "ior-1-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -503,7 +503,7 @@
       "ior": 1.25
     },
     "ior-1-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -513,7 +513,7 @@
       "ior": 1.25
     },
     "ior-1-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -523,7 +523,7 @@
       "ior": 1.25
     },
     "ior-1-1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -533,7 +533,7 @@
       "ior": 1.25
     },
     "ior-1.5-0": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -543,7 +543,7 @@
       "ior": 1.5
     },
     "ior-1.5-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -553,7 +553,7 @@
       "ior": 1.5
     },
     "ior-1.5-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -563,7 +563,7 @@
       "ior": 1.5
     },
     "ior-1.5-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -573,7 +573,7 @@
       "ior": 1.5
     },
     "ior-1.5-1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -583,7 +583,7 @@
       "ior": 1.5
     },
     "ior-2-0": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -593,7 +593,7 @@
       "ior": 2
     },
     "ior-2-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -603,7 +603,7 @@
       "ior": 2
     },
     "ior-2-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -613,7 +613,7 @@
       "ior": 2
     },
     "ior-2-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -623,7 +623,7 @@
       "ior": 2
     },
     "ior-2-1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -633,7 +633,7 @@
       "ior": 2
     },
     "ior-2.5-0": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -643,7 +643,7 @@
       "ior": 2.5
     },
     "ior-2.5-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -653,7 +653,7 @@
       "ior": 2.5
     },
     "ior-2.5-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -663,7 +663,7 @@
       "ior": 2.5
     },
     "ior-2.5-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -673,7 +673,7 @@
       "ior": 2.5
     },
     "ior-2.5-1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -683,7 +683,7 @@
       "ior": 2.5
     },
     "ior-3-0": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -693,7 +693,7 @@
       "ior": 3
     },
     "ior-3-0.25": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -703,7 +703,7 @@
       "ior": 3
     },
     "ior-3-0.5": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -713,7 +713,7 @@
       "ior": 3
     },
     "ior-3-0.75": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -723,7 +723,7 @@
       "ior": 3
     },
     "ior-3-1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive_comp",
       "color": [
         1,
         1,

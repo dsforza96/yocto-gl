@@ -73,13 +73,13 @@
   },
   "materials": {
     "material1": {
-      "type": "refractive_comp_fit",
+      "type": "refractive",
       "color": [
         1,
         1,
         1
       ],
-      "roughness": 0.625
+      "roughness": 0.7
     },
     "material2": {
       "type": "matte",

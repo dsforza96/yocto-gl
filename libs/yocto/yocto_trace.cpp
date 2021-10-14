@@ -1022,6 +1022,35 @@ static trace_result trace_naive(const scene_model& scene, const bvh_scene& bvh,
   return {radiance, hit, hit_albedo, hit_normal};
 }
 
+// Intersect a ray with a sphere
+inline bool intersect_sphere(
+    const ray3f& ray, const vec3f& p, float r, vec2f& uv, float& dist) {
+  // compute parameters
+  auto a = dot(ray.d, ray.d);
+  auto b = 2 * dot(ray.o - p, ray.d);
+  auto c = dot(ray.o - p, ray.o - p) - r * r;
+  // check discriminant
+  auto dis = b * b - 4 * a * c;
+  if (dis < 0) return false;
+  // compute ray parameter
+  auto t = (-b - sqrt(dis)) / (2 * a);
+  // exit if not within bounds
+  if (t < ray.tmin || t > ray.tmax) return false;
+  // try other ray parameter
+  t = (-b + sqrt(dis)) / (2 * a);
+  // exit if not within bounds
+  if (t < ray.tmin || t > ray.tmax) return false;
+  // compute local point for uvs
+  auto plocal = ((ray.o + ray.d * t) - p) / r;
+  auto u      = atan2(plocal.y, plocal.x) / (2 * pif);
+  if (u < 0) u += 1;
+  auto v = acos(clamp(plocal.z, -1.0f, 1.0f)) / pif;
+  // intersection occurred: set params and exit
+  uv   = {u, v};
+  dist = t;
+  return true;
+}
+
 // Furnace test.
 static trace_result trace_furnace(const scene_model& scene,
     const bvh_scene& bvh, const trace_lights& lights, const ray3f& ray_,
@@ -1046,11 +1075,6 @@ static trace_result trace_furnace(const scene_model& scene,
 
     // intersect next point
     auto intersection = intersect_bvh(bvh, scene, ray);
-    if (!intersection.hit) {
-      if (bounce > 0 || !params.envhidden)
-        radiance += weight * eval_environment(scene, ray.d);
-      break;
-    }
 
     // prepare shading point
     auto outgoing = -ray.d;
@@ -1059,7 +1083,20 @@ static trace_result trace_furnace(const scene_model& scene,
     auto uv       = intersection.uv;
     auto position = eval_position(scene, instance, element, uv);
     auto normal   = eval_shading_normal(scene, instance, element, uv, outgoing);
-    auto material = eval_material(scene, instance, element, uv);
+    auto material =
+        material_point{};  // eval_material(scene, instance, element, uv);
+
+    auto ray_t            = 0.0f;
+    auto uv               = vec2f{};
+    auto intersection_hit = intersect_sphere(ray, {0, 0, 0}, 0.1, uv, ray_t);
+    if (!intersection_hit) {
+      if (bounce > 0 || !params.envhidden)
+        radiance += weight * eval_environment(scene, ray.d);
+      break;
+    }
+
+    position = ray.d * ray_t + ray.o;
+    normal   = normalize(position);
 
     // handle opacity
     if (material.opacity < 1 && rand1f(rng) >= material.opacity) {

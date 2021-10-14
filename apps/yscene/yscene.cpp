@@ -164,7 +164,7 @@ void add_command(cli_command& cli, const string& name, render_params& params,
       cmd, "sampler", params.sampler, "Sampler type.", trace_sampler_names);
   add_option(cmd, "falsecolor", params.falsecolor, "False color type.",
       trace_falsecolor_names);
-  add_option(cmd, "samples", params.samples, "Number of samples.", {1, 4096});
+  add_option(cmd, "samples", params.samples, "Number of samples.", {1, 8192});
   add_option(cmd, "bounces", params.bounces, "Number of bounces.", {1, 1024});
   add_option(cmd, "clamp", params.clamp, "Clamp params.", {10, flt_max});
   add_option(cmd, "nocaustics", params.nocaustics, "Disable caustics.");
@@ -275,7 +275,7 @@ void add_command(cli_command& cli, const string& name, view_params& params,
       cmd, "sampler", params.sampler, "Sampler type.", trace_sampler_names);
   add_option(cmd, "falsecolor", params.falsecolor, "False color type.",
       trace_falsecolor_names);
-  add_option(cmd, "samples", params.samples, "Number of samples.", {1, 4096});
+  add_option(cmd, "samples", params.samples, "Number of samples.", {1, 8192});
   add_option(cmd, "bounces", params.bounces, "Number of bounces.", {1, 1024});
   add_option(cmd, "clamp", params.clamp, "Clamp params.", {10, flt_max});
   add_option(cmd, "nocaustics", params.nocaustics, "Disable caustics.");

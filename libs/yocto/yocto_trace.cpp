@@ -1022,33 +1022,92 @@ static trace_result trace_naive(const scene_model& scene, const bvh_scene& bvh,
   return {radiance, hit, hit_albedo, hit_normal};
 }
 
-// Intersect a ray with a sphere
 inline bool intersect_sphere(
     const ray3f& ray, const vec3f& p, float r, vec2f& uv, float& dist) {
   // compute parameters
   auto a = dot(ray.d, ray.d);
   auto b = 2 * dot(ray.o - p, ray.d);
   auto c = dot(ray.o - p, ray.o - p) - r * r;
+
   // check discriminant
   auto dis = b * b - 4 * a * c;
   if (dis < 0) return false;
-  // compute ray parameter
+
+  // compute ray parameter for first intersection
   auto t = (-b - sqrt(dis)) / (2 * a);
+
   // exit if not within bounds
-  if (t < ray.tmin || t > ray.tmax) return false;
-  // try other ray parameter
-  t = (-b + sqrt(dis)) / (2 * a);
-  // exit if not within bounds
-  if (t < ray.tmin || t > ray.tmax) return false;
+  if (t > ray.tmax) return false;
+
+  // try other ray parameter (ray origin may be inside the sphere)
+  if (t < ray.tmin) t = (-b + sqrt(dis)) / (2 * a);
+  if (t < ray.tmin) return false;
+
   // compute local point for uvs
   auto plocal = ((ray.o + ray.d * t) - p) / r;
   auto u      = atan2(plocal.y, plocal.x) / (2 * pif);
   if (u < 0) u += 1;
   auto v = acos(clamp(plocal.z, -1.0f, 1.0f)) / pif;
+
   // intersection occurred: set params and exit
   uv   = {u, v};
   dist = t;
   return true;
+}
+
+static vector<vec3f> sphere_centers   = {{-0.4, 0.4, 0}, {-0.2, 0.4, 0},
+    {0, 0.4, 0}, {0.2, 0.4, 0}, {0.4, 0.4, 0}, {-0.4, 0.2, 0}, {-0.2, 0.2, 0},
+    {0, 0.2, 0}, {0.2, 0.2, 0}, {0.4, 0.2, 0}, {-0.4, 0, 0}, {-0.2, 0, 0},
+    {0, 0, 0}, {0.2, 0, 0}, {0.4, 0, 0}, {-0.4, -0.2, 0}, {-0.2, -0.2, 0},
+    {0, -0.2, 0}, {0.2, -0.2, 0}, {0.4, -0.2, 0}, {-0.4, -0.4, 0},
+    {-0.2, -0.4, 0}, {0, -0.4, 0}, {0.2, -0.4, 0}, {0.4, -0.4, 0}};
+static vector<float> sphere_roughness = {0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f,
+    0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f,
+    0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f};
+static vector<float> sphere_ior = {1.25f, 1.25f, 1.25f, 1.25f, 1.25f, 1.5f,
+    1.5f, 1.5f, 1.5f, 1.5f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.5f, 2.5f, 2.5f,
+    2.5f, 2.5f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f};
+
+static float sphere_radius = 0.075;
+
+inline material_point get_material(int i) {
+  auto material      = material_point{};
+  material.color     = {1, 1, 1};
+  material.roughness = sphere_roughness[i];
+  material.roughness *= material.roughness;
+  material.ior  = sphere_ior[i];
+  material.type = scene_material_type::refractive_comp;
+  return material;
+}
+
+inline bool intersect_scene(const ray3f& _ray, vec3f& position, vec3f& normal,
+    material_point& material) {
+  auto ray          = _ray;
+  auto sphere_index = -1;
+  auto dist         = flt_max;
+  auto _uv          = vec2f{};
+  for (int i = 0; i < sphere_centers.size(); i++) {
+    auto hit = intersect_sphere(
+        ray, sphere_centers[i], sphere_radius, _uv, dist);
+    if (hit) {
+      ray.tmax     = dist;
+      sphere_index = i;
+    }
+  }
+  if (sphere_index == -1) return false;
+
+  position = ray.d * dist + ray.o;
+  normal   = normalize(position - sphere_centers[sphere_index]);
+  material = get_material(sphere_index);
+  return true;
+}
+
+inline float scene_sdf(const vec3f& position) {
+  auto sdf = flt_max;
+  for (int i = 0; i < sphere_centers.size(); i++) {
+    sdf = min(sdf, length(position - sphere_centers[i]) - sphere_radius);
+  }
+  return sdf;
 }
 
 // Furnace test.
@@ -1065,6 +1124,10 @@ static trace_result trace_furnace(const scene_model& scene,
   auto opbounce   = 0;
   auto in_volume  = false;
 
+  auto position = vec3f{};
+  auto normal   = vec3f{};
+  auto material = material_point{};
+
   // trace  path
   for (auto bounce = 0; bounce < params.bounces; bounce++) {
     // exit loop
@@ -1074,29 +1137,21 @@ static trace_result trace_furnace(const scene_model& scene,
     }
 
     // intersect next point
-    auto intersection = intersect_bvh(bvh, scene, ray);
-
-    // prepare shading point
-    auto outgoing = -ray.d;
-    auto instance = scene.instances[intersection.instance];
-    auto element  = intersection.element;
-    auto uv       = intersection.uv;
-    auto position = eval_position(scene, instance, element, uv);
-    auto normal   = eval_shading_normal(scene, instance, element, uv, outgoing);
-    auto material =
-        material_point{};  // eval_material(scene, instance, element, uv);
-
-    auto ray_t            = 0.0f;
-    auto uv               = vec2f{};
-    auto intersection_hit = intersect_sphere(ray, {0, 0, 0}, 0.1, uv, ray_t);
-    if (!intersection_hit) {
+    auto hit = intersect_scene(ray, position, normal, material);
+    if (!hit) {
       if (bounce > 0 || !params.envhidden)
         radiance += weight * eval_environment(scene, ray.d);
       break;
     }
 
-    position = ray.d * ray_t + ray.o;
-    normal   = normalize(position);
+    // prepare shading point
+    auto outgoing = -ray.d;
+    // auto instance = scene.instances[intersection.instance];
+    // auto element  = intersection.element;
+    // auto uv       = intersection.uv;
+    // auto position = eval_position(scene, instance, element, uv);
+    // auto normal   = eval_shading_normal(scene, instance, element, uv,
+    // outgoing); auto material = eval_material(scene, instance, element, uv);
 
     // handle opacity
     if (material.opacity < 1 && rand1f(rng) >= material.opacity) {
@@ -1142,11 +1197,12 @@ static trace_result trace_furnace(const scene_model& scene,
     // }
 
     // update volume stack
-    if (dot(normal, outgoing) * dot(normal, incoming) < 0)
-      in_volume = !in_volume;
+    // if (dot(normal, outgoing) * dot(normal, incoming) < 0)
+    // in_volume = !in_volume;
 
     // setup next iteration
-    ray = {position, incoming};
+    ray       = {position, incoming};
+    in_volume = (scene_sdf(ray.o + ray.d * ray_eps) < 0);
   }
 
   return {radiance, hit, hit_albedo, hit_normal};

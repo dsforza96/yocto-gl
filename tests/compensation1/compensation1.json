@@ -6,13 +6,13 @@
     "default": {
       "lens": 0.1,
       "aperture": 0.0,
-      "aspect": 1.25,
+      "aspect": 1,
       "lookat": [
         0,
-        0.075,
+        0,
         3,
         0,
-        0.075,
+        0,
         0,
         0,
         1,

@@ -1055,17 +1055,28 @@ inline bool intersect_sphere(
   return true;
 }
 
-static vector<vec3f> sphere_centers = {
-    {-0.4, 0, 0}, {-0.2, 0, 0}, {0, 0, 0}, {0.2, 0, 0}, {0.4, 0, 0}};
-static float sphere_radius = 0.1;
+static vector<vec3f> sphere_centers   = {{-0.4, 0.4, 0}, {-0.2, 0.4, 0},
+    {0, 0.4, 0}, {0.2, 0.4, 0}, {0.4, 0.4, 0}, {-0.4, 0.2, 0}, {-0.2, 0.2, 0},
+    {0, 0.2, 0}, {0.2, 0.2, 0}, {0.4, 0.2, 0}, {-0.4, 0, 0}, {-0.2, 0, 0},
+    {0, 0, 0}, {0.2, 0, 0}, {0.4, 0, 0}, {-0.4, -0.2, 0}, {-0.2, -0.2, 0},
+    {0, -0.2, 0}, {0.2, -0.2, 0}, {0.4, -0.2, 0}, {-0.4, -0.4, 0},
+    {-0.2, -0.4, 0}, {0, -0.4, 0}, {0.2, -0.4, 0}, {0.4, -0.4, 0}};
+static vector<float> sphere_roughness = {0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f,
+    0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f,
+    0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f};
+static vector<float> sphere_ior = {1.25f, 1.25f, 1.25f, 1.25f, 1.25f, 1.5f,
+    1.5f, 1.5f, 1.5f, 1.5f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.5f, 2.5f, 2.5f,
+    2.5f, 2.5f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f};
+
+static float sphere_radius = 0.075;
 
 inline material_point get_material(int i) {
   auto material      = material_point{};
   material.color     = {1, 1, 1};
-  material.roughness = float(i) / sphere_centers.size();
+  material.roughness = sphere_roughness[i];
   material.roughness *= material.roughness;
-  material.ior  = 1.5;
-  material.type = scene_material_type::refractive_comp_fit;
+  material.ior  = sphere_ior[i];
+  material.type = scene_material_type::refractive_comp;
   return material;
 }
 

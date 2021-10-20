@@ -1148,20 +1148,20 @@ inline bool intersect_sphere(
   return true;
 }
 
-static vector<vec3f> sphere_centers   = {{-0.4, 0.4, 0}, {-0.2, 0.4, 0},
+static const auto sphere_centers = vector<vec3f>{{-0.4, 0.4, 0}, {-0.2, 0.4, 0},
     {0, 0.4, 0}, {0.2, 0.4, 0}, {0.4, 0.4, 0}, {-0.4, 0.2, 0}, {-0.2, 0.2, 0},
     {0, 0.2, 0}, {0.2, 0.2, 0}, {0.4, 0.2, 0}, {-0.4, 0, 0}, {-0.2, 0, 0},
     {0, 0, 0}, {0.2, 0, 0}, {0.4, 0, 0}, {-0.4, -0.2, 0}, {-0.2, -0.2, 0},
     {0, -0.2, 0}, {0.2, -0.2, 0}, {0.4, -0.2, 0}, {-0.4, -0.4, 0},
     {-0.2, -0.4, 0}, {0, -0.4, 0}, {0.2, -0.4, 0}, {0.4, -0.4, 0}};
-static vector<float> sphere_roughness = {0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f,
-    0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f,
-    0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f};
-static vector<float> sphere_ior = {1.25f, 1.25f, 1.25f, 1.25f, 1.25f, 1.5f,
-    1.5f, 1.5f, 1.5f, 1.5f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.5f, 2.5f, 2.5f,
-    2.5f, 2.5f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f};
+static const auto sphere_roughness = vector<float>{0.0f, 0.25f, 0.5f, 0.75f,
+    1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.0f,
+    0.25f, 0.5f, 0.75f, 1.0f, 0.0f, 0.25f, 0.5f, 0.75f, 1.0f};
+static const auto sphere_ior = vector<float>{1.25f, 1.25f, 1.25f, 1.25f, 1.25f,
+    1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.5f, 2.5f,
+    2.5f, 2.5f, 2.5f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f};
 
-static float sphere_radius = 0.075;
+static const auto sphere_radius = 0.075f;
 
 inline material_point get_material(int i) {
   auto material      = material_point{};
@@ -1230,6 +1230,12 @@ static trace_result trace_furnace_analytic(const scene_model& scene,
     }
 
     // intersect next point
+    // auto intersection = intersect_bvh(bvh, scene, ray);
+    // if (!intersection.hit) {
+    //   if (bounce > 0 || !params.envhidden)
+    //     radiance += weight * eval_environment(scene, ray.d);
+    //   break;
+    // }
     auto hit = intersect_scene(ray, position, normal, material);
     if (!hit) {
       if (bounce > 0 || !params.envhidden)
@@ -1292,10 +1298,10 @@ static trace_result trace_furnace_analytic(const scene_model& scene,
     // update volume stack
     // if (dot(normal, outgoing) * dot(normal, incoming) < 0)
     // in_volume = !in_volume;
+    in_volume = scene_sdf(ray.o + ray.d * ray_eps) < 0;
 
     // setup next iteration
-    ray       = {position, incoming};
-    in_volume = (scene_sdf(ray.o + ray.d * ray_eps) < 0);
+    ray = {position, incoming};
   }
 
   return {radiance, hit, hit_albedo, hit_normal};

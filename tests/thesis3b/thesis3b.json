@@ -23,9 +23,9 @@
   "environments": {
     "quattro-canti": {
       "emission": [
-        2,
-        2,
-        2
+        1,
+        1,
+        1
       ],
       "emission_tex": "quattro_canti_4k"
     }
@@ -520,7 +520,7 @@
   },
   "materials": {
     "no-comp-0": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -529,7 +529,7 @@
       "roughness": 0
     },
     "no-comp-0.125": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -538,7 +538,7 @@
       "roughness": 0.125
     },
     "no-comp-0.25": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -547,7 +547,7 @@
       "roughness": 0.25
     },
     "no-comp-0.375": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -556,7 +556,7 @@
       "roughness": 0.375
     },
     "no-comp-0.5": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -565,7 +565,7 @@
       "roughness": 0.5
     },
     "no-comp-0.625": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -574,7 +574,7 @@
       "roughness": 0.625
     },
     "no-comp-0.75": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -583,7 +583,7 @@
       "roughness": 0.75
     },
     "no-comp-0.875": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -592,7 +592,7 @@
       "roughness": 0.875
     },
     "no-comp-1": {
-      "type": "transparent",
+      "type": "refractive",
       "color": [
         1,
         1,
@@ -601,7 +601,7 @@
       "roughness": 1
     },
     "comp-tab-0": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -610,7 +610,7 @@
       "roughness": 0
     },
     "comp-tab-0.125": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -619,7 +619,7 @@
       "roughness": 0.125
     },
     "comp-tab-0.25": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -628,7 +628,7 @@
       "roughness": 0.25
     },
     "comp-tab-0.375": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -637,7 +637,7 @@
       "roughness": 0.375
     },
     "comp-tab-0.5": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -646,7 +646,7 @@
       "roughness": 0.5
     },
     "comp-tab-0.625": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -655,7 +655,7 @@
       "roughness": 0.625
     },
     "comp-tab-0.75": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -664,7 +664,7 @@
       "roughness": 0.75
     },
     "comp-tab-0.875": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -673,7 +673,7 @@
       "roughness": 0.875
     },
     "comp-tab-1": {
-      "type": "transparent_comp",
+      "type": "refractive_comp",
       "color": [
         1,
         1,
@@ -682,7 +682,7 @@
       "roughness": 1
     },
     "comp-fit-0": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -691,7 +691,7 @@
       "roughness": 0
     },
     "comp-fit-0.125": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -700,7 +700,7 @@
       "roughness": 0.125
     },
     "comp-fit-0.25": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -709,7 +709,7 @@
       "roughness": 0.25
     },
     "comp-fit-0.375": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -718,7 +718,7 @@
       "roughness": 0.375
     },
     "comp-fit-0.5": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -727,7 +727,7 @@
       "roughness": 0.5
     },
     "comp-fit-0.625": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -736,7 +736,7 @@
       "roughness": 0.625
     },
     "comp-fit-0.75": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -745,7 +745,7 @@
       "roughness": 0.75
     },
     "comp-fit-0.875": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,
@@ -754,7 +754,7 @@
       "roughness": 0.875
     },
     "comp-fit-1": {
-      "type": "transparent_comp_fit",
+      "type": "refractive_comp_fit",
       "color": [
         1,
         1,

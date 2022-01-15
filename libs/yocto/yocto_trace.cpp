@@ -1038,6 +1038,12 @@ static trace_result trace_furnace(const scene_model& scene,
 
   // trace  path
   for (auto bounce = 0; bounce < params.bounces; bounce++) {
+    // first interaction only
+    // if (bounce > 0) {
+
+    // second interaction only
+    // if (bounce > 1) {
+
     // exit loop
     if (bounce > 0 && !in_volume) {
       radiance += weight * eval_environment(scene, ray.d);
@@ -1060,6 +1066,12 @@ static trace_result trace_furnace(const scene_model& scene,
     auto position = eval_position(scene, instance, element, uv);
     auto normal   = eval_shading_normal(scene, instance, element, uv, outgoing);
     auto material = eval_material(scene, instance, element, uv);
+
+    // second interaction only
+    // if (bounce == 0) {
+    //   ray = {position + ray.d * 1e-2f, ray.d};
+    //   continue;
+    // }
 
     // handle opacity
     if (material.opacity < 1 && rand1f(rng) >= material.opacity) {

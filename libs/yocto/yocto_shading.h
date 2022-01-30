@@ -628,7 +628,8 @@ inline float microfacet_compensation_dielectrics(const vector<float>& E_lut,
 
   auto F0 = eta_to_reflectivity(ior);
   auto w  = (clamp(F0, minF0, maxF0) - minF0) / (maxF0 - minF0);
-  auto E  = interpolate3d(
+
+  auto E = interpolate3d(
       E_lut, {abs(dot(normal, outgoing)), sqrt(roughness), w});
   return 1 / E;
 }
@@ -695,10 +696,10 @@ inline float eval_ratpoly3d(const float coef[], float x, float y, float z) {
 
 inline vec3f microfacet_compensation_conductors_myfit(const vec3f& color,
     float roughness, const vec3f& normal, const vec3f& outgoing) {
-  const float coef[19] = {1.01202782f, -11.1084138f, 13.68932726f, 46.63441392f,
-      -56.78561075f, 17.38577426f, -29.2033844f, 30.94339247f, -5.38305905f,
-      -4.72530367f, -10.45175028f, 13.88865122f, 43.49596666f, -57.01339516f,
-      16.76996746f, -21.80566626f, 32.0408972f, -5.48296756f, -4.29104947f};
+  const float coef[19] = {1.0247217f, -10.984229f, 10.918318f, 46.93353f,
+      -54.779343f, 21.742077f, -30.368898f, 31.919222f, -8.013965f, -6.2407165f,
+      -10.218104f, 10.955399f, 44.08196f, -55.33452f, 21.437538f, -23.744568f,
+      33.265057f, -7.9268975f, -5.930959f};
 
   auto E = eval_ratpoly2d(coef, sqrt(roughness), abs(dot(normal, outgoing)));
   return 1 + color * (1 - E) / E;
@@ -775,16 +776,13 @@ inline vec3f eval_glossy_comp(const vec3f& color, float ior, float roughness,
 inline vec3f eval_glossy_comp_fit(const vec3f& color, float ior,
     float roughness, const vec3f& normal, const vec3f& outgoing,
     const vec3f& incoming) {
-  const float coef[39] = {1.45970506e-03f, 3.69893005e+02f, -5.58225554e-04f,
-      -1.15821645e-01f, -7.20786926e+02f, -3.52259033e+02f, -6.37135681e+02f,
-      -9.91124138e-02f, 2.34838381e-01f, 1.02659988e+00f, 3.52695404e+02f,
-      6.57984253e+02f, 1.38440784e+03f, 3.15433258e+02f, 2.60571136e+02f,
-      6.63945801e+02f, 6.03535116e-01f, -2.40039468e+00f, 2.32054234e+00f,
-      -2.13538051e+00f, 3.61695648e+02f, -1.62667236e+01f, 1.98012676e+01f,
-      -6.07015015e+02f, 2.33831161e+02f, 4.56130249e+02f, 1.14096992e+02f,
-      -2.69915619e+02f, 1.25665649e+02f, 2.46707138e+02f, 1.59820953e+02f,
-      4.23447510e+02f, 5.01607590e+01f, 3.24522186e+02f, 1.49460770e+02f,
-      6.21792526e+01f, 1.36633072e+02f, 1.96087204e+02f, 2.15348480e+02f};
+  const float coef[39] = {0.04301317f, 132.98329f, -0.9273584f, -0.61434704f,
+      -262.23462f, -137.75214f, -234.72151f, 5.125822f, -0.37465897f, 9.284745f,
+      129.71187f, 171.82188f, 400.04813f, 206.99231f, 1.0847985f, 428.02484f,
+      -2.2108653f, -6.056363f, 0.95864034f, -11.775469f, 139.43494f,
+      -24.177433f, -3.7300687f, -253.77824f, 6.717145f, 98.03935f, 153.19194f,
+      -184.53282f, 230.02286f, 113.9376f, 66.64211f, 108.315094f, 23.577564f,
+      120.04127f, 102.90899f, 17.030241f, 25.947954f, 75.77901f, 49.348934f};
 
   if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
@@ -1176,8 +1174,8 @@ inline vec3f eval_refractive(const vec3f& color, float ior, float roughness,
 inline vec3f eval_refractive_comp(const vec3f& color, float ior,
     float roughness, const vec3f& normal, const vec3f& outgoing,
     const vec3f& incoming) {
-  auto E_lut = dot(normal, outgoing) >= 0 ? entering_albedo_lut_eta2
-                                          : leaving_albedo_lut_eta2;
+  auto E_lut = dot(normal, outgoing) >= 0 ? entering_albedo_lut
+                                          : leaving_albedo_lut;
   auto C     = microfacet_compensation_dielectrics(
       E_lut, ior, roughness, normal, outgoing);
   return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
@@ -1186,24 +1184,23 @@ inline vec3f eval_refractive_comp(const vec3f& color, float ior,
 inline vec3f eval_refractive_comp_fit(const vec3f& color, float ior,
     float roughness, const vec3f& normal, const vec3f& outgoing,
     const vec3f& incoming) {
-  const float coef_enter[39] = {1.0335013f, 7.450409f, -3.319554f, 18.44608f,
-      -30.58467f, 33.400505f, 327.8045f, 4.6029525f, -30.953785f, 36.854183f,
-      342.75027f, -90.9943f, -73.366615f, -18.440683f, -254.84488f, -89.319405f,
-      -1.7787099f, 17.897514f, -22.77419f, 13.296596f, 8.721737f, -2.0361824f,
-      18.254898f, -36.243607f, 31.847424f, 323.02133f, -0.5822772f, -27.898998f,
-      36.163277f, 364.78198f, -80.00294f, -83.136086f, -14.092524f, -218.99208f,
-      -92.53893f, 4.594424f, 20.955828f, -28.854736f, 14.729479f};
-  const float coef_leave[39] = {9.67145145e-01f, 2.16013241e+01f,
-      -2.02096558e+00f, -2.01874876e+00f, -5.43549538e+00f, -7.87079477e+00f,
-      -2.86914902e+01f, 1.92847443e+00f, 1.09270012e+00f, 3.73462844e+00f,
-      -5.97717094e+01f, 1.93938808e+01f, 1.33008852e+01f, -2.35681677e+00f,
-      1.80178809e+00f, 1.33748035e+01f, -8.85033965e-01f, 1.34998655e+00f,
-      -2.96786380e+00f, -9.18334782e-01f, 2.21405087e+01f, -1.81398928e+00f,
-      -2.36214828e+00f, -3.70193338e+00f, -6.65679741e+00f, -3.13353672e+01f,
-      2.26810932e+00f, 4.21848953e-01f, 4.52370930e+00f, -5.91011772e+01f,
-      1.16894159e+01f, 1.24615879e+01f, 3.95525575e+00f, 5.39931841e-02f,
-      1.54366455e+01f, -8.92938375e-01f, 1.19969201e+00f, -2.58653760e+00f,
-      -1.40058172e+00f};
+  const float coef_enter[39] = {0.8401774f, 15.616336f, -0.6390599f,
+      -0.60598934f, -54.17703f, 5.3475213f, -16.128054f, 6.8073897f, 2.6146727f,
+      5.4710407f, 7.542388f, 37.106228f, 49.790897f, 15.179674f, -64.01759f,
+      31.87136f, -6.7906203f, 3.3299181f, -3.2874138f, -2.327336f, 13.647562f,
+      -1.517177f, -1.0938795f, -40.32169f, 39.823746f, 61.77497f, 12.144745f,
+      3.2809308f, 8.584514f, -18.615942f, -68.231834f, -152.67201f, 128.045f,
+      -189.90848f, 92.90774f, -8.263352f, 0.07007713f, -1.9787291f,
+      -4.9714503f};
+  const float coef_leave[39] = {0.9037275f, 2.8709784f, -0.5995152f,
+      -2.6711686f, 1.4084549f, -0.5459547f, -5.8607593f, 0.14532462f,
+      1.4982259f, 2.3919318f, 1.0932008f, -0.56495035f, -1.7221113f,
+      -0.12187099f, 0.9073397f, 2.8526652f, -0.057097856f, -0.042553183f,
+      -0.97128487f, -0.57450813f, 3.028488f, -0.25472447f, -3.3121412f,
+      0.5296914f, -0.49870673f, -6.0203166f, 0.053515133f, 0.6652836f,
+      3.544313f, -0.7591114f, -0.36312243f, 0.16041628f, -0.102351815f,
+      0.7100232f, 2.76545f, 0.009563673f, -0.022175621f, -0.44277084f,
+      -1.2049589f};
 
   auto coef = dot(normal, outgoing) >= 0 ? coef_enter : coef_leave;
   auto C    = microfacet_compensation_dielectrics_fit(

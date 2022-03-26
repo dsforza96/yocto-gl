@@ -669,7 +669,7 @@ inline float eval_ratpoly3d(const float coef[], float x, float y, float z) {
 //   auto x2 = x * x, y2 = y * y, z2 = z * z;
 //   auto x3 = x2 * x, y3 = y2 * y, z3 = z2 * z;
 //   auto x4 = x3 * x, y4 = y3 * y, z4 = z3 * z;
-
+//
 //   return (coef[0] + coef[1] * x + coef[2] * y + coef[3] * z + coef[4] * x2 +
 //              coef[5] * x * y + coef[6] * x * z + coef[7] * y2 +
 //              coef[8] * y * z + coef[9] * z2 + coef[10] * x3 +
@@ -709,7 +709,9 @@ inline float microfacet_compensation_dielectrics_fit(const float coef[],
     float ior, float roughness, const vec3f& normal, const vec3f& outgoing) {
   const auto minF0 = 0.0125f, maxF0 = 0.25f;
 
-  auto x = clamp(eta_to_reflectivity(ior), minF0, maxF0);
+  auto F0 = eta_to_reflectivity(ior);
+  auto x  = (clamp(F0, minF0, maxF0) - minF0) / (maxF0 - minF0);
+
   auto E = eval_ratpoly3d(coef, x, sqrt(roughness), abs(dot(normal, outgoing)));
   return 1 / E;
 }
@@ -746,7 +748,7 @@ inline vec3f eval_glossy(const vec3f& color, float ior, float roughness,
   auto F         = fresnel_dielectric(ior, halfway, incoming);
   auto D         = microfacet_distribution(roughness, up_normal, halfway);
   auto G         = microfacet_shadowing(
-      roughness, up_normal, halfway, outgoing, incoming);
+              roughness, up_normal, halfway, outgoing, incoming);
   return color * (1 - F1) / pif * abs(dot(up_normal, incoming)) +
          vec3f{1, 1, 1} * F * D * G /
              (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
@@ -758,11 +760,11 @@ inline vec3f eval_glossy_comp(const vec3f& color, float ior, float roughness,
   if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
   auto E1        = interpolate3d(
-      glossy_albedo_lut, {abs(dot(up_normal, outgoing)), sqrt(roughness),
+             glossy_albedo_lut, {abs(dot(up_normal, outgoing)), sqrt(roughness),
                              eta_to_reflectivity(ior)});
   auto halfway = normalize(incoming + outgoing);
   auto C       = microfacet_compensation_conductors(
-      my_albedo_lut, {1, 1, 1}, roughness, normal, outgoing);
+            my_albedo_lut, {1, 1, 1}, roughness, normal, outgoing);
   auto F = fresnel_dielectric(ior, halfway, incoming);
   auto D = microfacet_distribution(roughness, up_normal, halfway);
   auto G = microfacet_shadowing(
@@ -787,10 +789,10 @@ inline vec3f eval_glossy_comp_fit(const vec3f& color, float ior,
   if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
   auto E1      = eval_ratpoly3d(coef, eta_to_reflectivity(ior), sqrt(roughness),
-      abs(dot(up_normal, outgoing)));
+           abs(dot(up_normal, outgoing)));
   auto halfway = normalize(incoming + outgoing);
   auto C       = microfacet_compensation_conductors_myfit(
-      {1, 1, 1}, roughness, normal, outgoing);
+            {1, 1, 1}, roughness, normal, outgoing);
   auto F = fresnel_dielectric(ior, halfway, incoming);
   auto D = microfacet_distribution(roughness, up_normal, halfway);
   auto G = microfacet_shadowing(
@@ -834,7 +836,7 @@ inline vec3f eval_metallic(const vec3f& color, float roughness,
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
   auto halfway   = normalize(incoming + outgoing);
   auto F         = fresnel_conductor(
-      reflectivity_to_eta(color), {0, 0, 0}, halfway, incoming);
+              reflectivity_to_eta(color), {0, 0, 0}, halfway, incoming);
   auto D = microfacet_distribution(roughness, up_normal, halfway);
   auto G = microfacet_shadowing(
       roughness, up_normal, halfway, outgoing, incoming);
@@ -904,7 +906,7 @@ inline vec3f eval_metallic(const vec3f& eta, const vec3f& etak, float roughness,
   auto F         = fresnel_conductor(eta, etak, halfway, incoming);
   auto D         = microfacet_distribution(roughness, up_normal, halfway);
   auto G         = microfacet_shadowing(
-      roughness, up_normal, halfway, outgoing, incoming);
+              roughness, up_normal, halfway, outgoing, incoming);
   return F * D * G / (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
          abs(dot(up_normal, incoming));
 }
@@ -987,7 +989,7 @@ inline vec3f eval_gltfpbr(const vec3f& color, float ior, float roughness,
   auto F         = fresnel_schlick(reflectivity, halfway, incoming);
   auto D         = microfacet_distribution(roughness, up_normal, halfway);
   auto G         = microfacet_shadowing(
-      roughness, up_normal, halfway, outgoing, incoming);
+              roughness, up_normal, halfway, outgoing, incoming);
   return color * (1 - metallic) * (1 - F1) / pif *
              abs(dot(up_normal, incoming)) +
          F * D * G / (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
@@ -1035,7 +1037,7 @@ inline vec3f eval_transparent(const vec3f& color, float ior, float roughness,
     auto F       = fresnel_dielectric(ior, halfway, outgoing);
     auto D       = microfacet_distribution(roughness, up_normal, halfway);
     auto G       = microfacet_shadowing(
-        roughness, up_normal, halfway, outgoing, incoming);
+              roughness, up_normal, halfway, outgoing, incoming);
     return vec3f{1, 1, 1} * F * D * G /
            (4 * dot(up_normal, outgoing) * dot(up_normal, incoming)) *
            abs(dot(up_normal, incoming));
@@ -1045,7 +1047,7 @@ inline vec3f eval_transparent(const vec3f& color, float ior, float roughness,
     auto F         = fresnel_dielectric(ior, halfway, outgoing);
     auto D         = microfacet_distribution(roughness, up_normal, halfway);
     auto G         = microfacet_shadowing(
-        roughness, up_normal, halfway, outgoing, reflected);
+                roughness, up_normal, halfway, outgoing, reflected);
     return color * (1 - F) * D * G /
            (4 * dot(up_normal, outgoing) * dot(up_normal, reflected)) *
            (abs(dot(up_normal, reflected)));
@@ -1150,7 +1152,7 @@ inline vec3f eval_refractive(const vec3f& color, float ior, float roughness,
     auto F       = fresnel_dielectric(rel_ior, halfway, outgoing);
     auto D       = microfacet_distribution(roughness, up_normal, halfway);
     auto G       = microfacet_shadowing(
-        roughness, up_normal, halfway, outgoing, incoming);
+              roughness, up_normal, halfway, outgoing, incoming);
     return vec3f{1, 1, 1} * F * D * G /
            abs(4 * dot(normal, outgoing) * dot(normal, incoming)) *
            abs(dot(normal, incoming));
@@ -1177,34 +1179,34 @@ inline vec3f eval_refractive_comp(const vec3f& color, float ior,
   auto E_lut = dot(normal, outgoing) >= 0 ? entering_albedo_lut
                                           : leaving_albedo_lut;
   auto C     = microfacet_compensation_dielectrics(
-      E_lut, ior, roughness, normal, outgoing);
+          E_lut, ior, roughness, normal, outgoing);
   return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
 }
 
 inline vec3f eval_refractive_comp_fit(const vec3f& color, float ior,
     float roughness, const vec3f& normal, const vec3f& outgoing,
     const vec3f& incoming) {
-  const float coef_enter[39] = {0.8401774f, 15.616336f, -0.6390599f,
-      -0.60598934f, -54.17703f, 5.3475213f, -16.128054f, 6.8073897f, 2.6146727f,
-      5.4710407f, 7.542388f, 37.106228f, 49.790897f, 15.179674f, -64.01759f,
-      31.87136f, -6.7906203f, 3.3299181f, -3.2874138f, -2.327336f, 13.647562f,
-      -1.517177f, -1.0938795f, -40.32169f, 39.823746f, 61.77497f, 12.144745f,
-      3.2809308f, 8.584514f, -18.615942f, -68.231834f, -152.67201f, 128.045f,
-      -189.90848f, 92.90774f, -8.263352f, 0.07007713f, -1.9787291f,
-      -4.9714503f};
-  const float coef_leave[39] = {0.9037275f, 2.8709784f, -0.5995152f,
-      -2.6711686f, 1.4084549f, -0.5459547f, -5.8607593f, 0.14532462f,
-      1.4982259f, 2.3919318f, 1.0932008f, -0.56495035f, -1.7221113f,
-      -0.12187099f, 0.9073397f, 2.8526652f, -0.057097856f, -0.042553183f,
-      -0.97128487f, -0.57450813f, 3.028488f, -0.25472447f, -3.3121412f,
-      0.5296914f, -0.49870673f, -6.0203166f, 0.053515133f, 0.6652836f,
-      3.544313f, -0.7591114f, -0.36312243f, 0.16041628f, -0.102351815f,
-      0.7100232f, 2.76545f, 0.009563673f, -0.022175621f, -0.44277084f,
-      -1.2049589f};
+  const float coef_enter[39] = {0.88204753f, 2.9100745f, -0.48650393f,
+      -0.6869693f, -2.6111116f, 1.280099f, -3.0361037f, 6.0099907f, 1.5584689f,
+      5.0413747f, 0.08679456f, 1.7977521f, 2.4122913f, 3.0965478f, -13.059173f,
+      6.5015526f, -5.8326087f, 2.8601415f, -2.823629f, -1.9989978f, 2.576616f,
+      -0.88472295f, -0.2968001f, -1.9873656f, 7.7758255f, 11.823093f,
+      11.806131f, 0.77912694f, 8.370924f, -0.21419774f, -3.3057156f,
+      -7.3967423f, 26.120386f, -38.740086f, 18.952562f, -7.097557f, 0.06018523f,
+      -1.6995846f, -4.2700834f};
+  const float coef_leave[39] = {0.9058252f, 0.66886765f, -0.5890898f,
+      -2.6440134f, 0.07883829f, -0.12923713f, -1.3578774f, 0.14004363f,
+      1.4652854f, 2.3356364f, 0.01411426f, -0.03098078f, -0.09350643f,
+      -0.02803441f, 0.20931004f, 0.6555231f, -0.05532918f, -0.04199969f,
+      -0.9421887f, -0.5506359f, 0.69983786f, -0.25523397f, -3.26283f,
+      0.02724928f, -0.11726277f, -1.3839414f, 0.05079598f, 0.6582459f,
+      3.4458249f, -0.00991515f, -0.01989372f, 0.00908284f, -0.02355992f,
+      0.16388047f, 0.63573486f, 0.00930539f, -0.02168169f, -0.43173444f,
+      -1.1592134f};
 
   auto coef = dot(normal, outgoing) >= 0 ? coef_enter : coef_leave;
   auto C    = microfacet_compensation_dielectrics_fit(
-      coef, ior, roughness, normal, outgoing);
+         coef, ior, roughness, normal, outgoing);
   return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
 }
 

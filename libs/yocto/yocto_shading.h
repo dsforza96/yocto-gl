@@ -36,6 +36,8 @@
 // INCLUDES
 // -----------------------------------------------------------------------------
 
+#include <torch/script.h>
+
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -758,7 +760,7 @@ inline vec3f eval_glossy_comp(const vec3f& color, float ior, float roughness,
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
   auto E1        = interpolate3d(
       glossy_albedo_lut, {abs(dot(up_normal, outgoing)), sqrt(roughness),
-                             eta_to_reflectivity(ior)});
+                                    eta_to_reflectivity(ior)});
   auto halfway = normalize(incoming + outgoing);
   auto C       = microfacet_compensation_conductors(
       my_albedo_lut, {1, 1, 1}, roughness, normal, outgoing);
@@ -789,7 +791,7 @@ inline vec3f eval_glossy_comp_fit(const vec3f& color, float ior,
   if (dot(normal, incoming) * dot(normal, outgoing) <= 0) return zero3f;
   auto up_normal = dot(normal, outgoing) <= 0 ? -normal : normal;
   auto E1      = eval_ratpoly3d(coef, eta_to_reflectivity(ior), sqrt(roughness),
-      abs(dot(up_normal, outgoing)));
+           abs(dot(up_normal, outgoing)));
   auto halfway = normalize(incoming + outgoing);
   auto C       = microfacet_compensation_conductors_myfit(
       {1, 1, 1}, roughness, normal, outgoing);
@@ -863,10 +865,21 @@ inline vec3f eval_metallic_comp_tab(const vec3f& color, float roughness,
   return C * eval_metallic(color, roughness, normal, outgoing, incoming);
 }
 
+const auto albedo = torch::jit::load(
+    "/home/graphics/Documents/energy-compensation/extension/traced_conductors.pt");
+
 inline vec3f eval_metallic_comp_mytab(const vec3f& color, float roughness,
     const vec3f& normal, const vec3f& outgoing, const vec3f& incoming) {
-  auto C = microfacet_compensation_conductors(
-      my_albedo_lut, color, roughness, normal, outgoing);
+  auto E_nn = albedo;
+
+  std::vector<torch::jit::IValue> inputs;
+  inputs.push_back(
+      torch::tensor({sqrt(roughness), abs(dot(normal, outgoing))}));
+
+  auto output = E_nn.forward(inputs).toTensor();
+  auto E      = output.item().toFloat();
+  auto C      = 1 + color * (1 - E) / E;
+
   return C * eval_metallic(color, roughness, normal, outgoing, incoming);
 }
 
@@ -1173,13 +1186,28 @@ inline vec3f eval_refractive(const vec3f& color, float ior, float roughness,
   }
 }
 
+const auto entering_albedo = torch::jit::load(
+    "/home/graphics/Documents/energy-compensation/extension/traced_dielectrics.pt");
+const auto leaving_albedo = torch::jit::load(
+    "/home/graphics/Documents/energy-compensation/extension/traced_dielectrics_inv_eta.pt");
+const auto minF0 = 0.0125f, maxF0 = 0.25f;
+
 inline vec3f eval_refractive_comp(const vec3f& color, float ior,
     float roughness, const vec3f& normal, const vec3f& outgoing,
     const vec3f& incoming) {
-  auto E_lut = dot(normal, outgoing) >= 0 ? entering_albedo_lut_eta2
-                                          : leaving_albedo_lut_eta2;
-  auto C     = microfacet_compensation_dielectrics(
-      E_lut, ior, roughness, normal, outgoing);
+  auto E_nn = dot(normal, outgoing) >= 0 ? entering_albedo : leaving_albedo;
+
+  auto F0 = eta_to_reflectivity(ior);
+  auto w  = (clamp(F0, minF0, maxF0) - minF0) / (maxF0 - minF0);
+
+  std::vector<torch::jit::IValue> inputs;
+  inputs.push_back(
+      torch::tensor({w, sqrt(roughness), abs(dot(normal, outgoing))}));
+
+  auto output = E_nn.forward(inputs).toTensor();
+  auto E      = output.item().toFloat();
+  auto C      = 1 / E;
+
   return C * eval_refractive(color, ior, roughness, normal, outgoing, incoming);
 }
 

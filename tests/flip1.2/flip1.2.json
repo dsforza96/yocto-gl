@@ -1,0 +1,765 @@
+{
+  "asset": {
+    "copyright": "Model by Fabio Pellacini from github.com/~xelatihy/yocto-gl"
+  },
+  "cameras": {
+    "default": {
+      "lens": 0.1,
+      "aperture": 0.0,
+      "aspect": 3,
+      "lookat": [
+        0,
+        0.075,
+        5,
+        0,
+        0.075,
+        0,
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  "environments": {
+    "furnace": {
+      "emission": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "instances": {
+    "no-comp-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0"
+    },
+    "no-comp-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.125"
+    },
+    "no-comp-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.25"
+    },
+    "no-comp-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.375"
+    },
+    "no-comp-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.5"
+    },
+    "no-comp-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.625"
+    },
+    "no-comp-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.75"
+    },
+    "no-comp-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-0.875"
+    },
+    "no-comp-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0.2,
+        0
+      ],
+      "material": "comp-mytab-1"
+    },
+    "comp-mytab-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0"
+    },
+    "comp-mytab-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.125"
+    },
+    "comp-mytab-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.25"
+    },
+    "comp-mytab-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.375"
+    },
+    "comp-mytab-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.5"
+    },
+    "comp-mytab-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.625"
+    },
+    "comp-mytab-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.75"
+    },
+    "comp-mytab-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0,
+        0
+      ],
+      "material": "comp-myfit-0.875"
+    },
+    "comp-mytab-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0,
+        0
+      ],
+      "material": "comp-myfit-1"
+    },
+    "comp-myfit-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0"
+    },
+    "comp-myfit-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.125"
+    },
+    "comp-myfit-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.25"
+    },
+    "comp-myfit-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.375"
+    },
+    "comp-myfit-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.5"
+    },
+    "comp-myfit-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.625"
+    },
+    "comp-myfit-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.75"
+    },
+    "comp-myfit-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-0.875"
+    },
+    "comp-myfit-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        -0.2,
+        0
+      ],
+      "material": "comp-myfit-1"
+    }
+  },
+  "materials": {
+    "no-comp-0": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "no-comp-0.125": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "no-comp-0.25": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "no-comp-0.375": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "no-comp-0.5": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "no-comp-0.625": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "no-comp-0.75": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "no-comp-0.875": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "no-comp-1": {
+      "type": "metallic",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    },
+    "comp-mytab-0": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "comp-mytab-0.125": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "comp-mytab-0.25": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "comp-mytab-0.375": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "comp-mytab-0.5": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "comp-mytab-0.625": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "comp-mytab-0.75": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "comp-mytab-0.875": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "comp-mytab-1": {
+      "type": "metallic_comp_mytab",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    },
+    "comp-myfit-0": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "comp-myfit-0.125": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "comp-myfit-0.25": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "comp-myfit-0.375": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "comp-myfit-0.5": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "comp-myfit-0.625": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "comp-myfit-0.75": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "comp-myfit-0.875": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "comp-myfit-1": {
+      "type": "metallic_comp_myfit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    }
+  }
+}

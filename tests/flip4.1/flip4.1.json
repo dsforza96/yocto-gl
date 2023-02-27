@@ -1,0 +1,765 @@
+{
+  "asset": {
+    "copyright": "Model by Fabio Pellacini from github.com/~xelatihy/yocto-gl"
+  },
+  "cameras": {
+    "default": {
+      "lens": 0.1,
+      "aperture": 0.0,
+      "aspect": 3,
+      "lookat": [
+        0,
+        0.075,
+        5,
+        0,
+        0.075,
+        0,
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  "environments": {
+    "furnace": {
+      "emission": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "instances": {
+    "no-comp-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0"
+    },
+    "no-comp-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.125"
+    },
+    "no-comp-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.25"
+    },
+    "no-comp-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.375"
+    },
+    "no-comp-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.5"
+    },
+    "no-comp-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.625"
+    },
+    "no-comp-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.75"
+    },
+    "no-comp-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0.2,
+        0
+      ],
+      "material": "no-comp-0.875"
+    },
+    "no-comp-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0.2,
+        0
+      ],
+      "material": "no-comp-1"
+    },
+    "comp-tab-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        0,
+        0
+      ],
+      "material": "no-comp-0"
+    },
+    "comp-tab-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        0,
+        0
+      ],
+      "material": "no-comp-0.125"
+    },
+    "comp-tab-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        0,
+        0
+      ],
+      "material": "no-comp-0.25"
+    },
+    "comp-tab-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        0,
+        0
+      ],
+      "material": "no-comp-0.375"
+    },
+    "comp-tab-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "material": "no-comp-0.5"
+    },
+    "comp-tab-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        0,
+        0
+      ],
+      "material": "no-comp-0.625"
+    },
+    "comp-tab-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        0,
+        0
+      ],
+      "material": "no-comp-0.75"
+    },
+    "comp-tab-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0,
+        0
+      ],
+      "material": "no-comp-0.875"
+    },
+    "comp-tab-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0,
+        0
+      ],
+      "material": "no-comp-1"
+    },
+    "comp-fit-0": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.8,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0"
+    },
+    "comp-fit-0.125": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.6,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.125"
+    },
+    "comp-fit-0.25": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.25"
+    },
+    "comp-fit-0.375": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        -0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.375"
+    },
+    "comp-fit-0.5": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.5"
+    },
+    "comp-fit-0.625": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.2,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.625"
+    },
+    "comp-fit-0.75": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.4,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.75"
+    },
+    "comp-fit-0.875": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-0.875"
+    },
+    "comp-fit-1": {
+      "shape": "sphere",
+      "frame": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        -0.2,
+        0
+      ],
+      "material": "comp-tab-1"
+    }
+  },
+  "materials": {
+    "no-comp-0": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "no-comp-0.125": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "no-comp-0.25": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "no-comp-0.375": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "no-comp-0.5": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "no-comp-0.625": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "no-comp-0.75": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "no-comp-0.875": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "no-comp-1": {
+      "type": "glossy",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    },
+    "comp-tab-0": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "comp-tab-0.125": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "comp-tab-0.25": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "comp-tab-0.375": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "comp-tab-0.5": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "comp-tab-0.625": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "comp-tab-0.75": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "comp-tab-0.875": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "comp-tab-1": {
+      "type": "glossy_comp",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    },
+    "comp-fit-0": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0
+    },
+    "comp-fit-0.125": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.125
+    },
+    "comp-fit-0.25": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.25
+    },
+    "comp-fit-0.375": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.375
+    },
+    "comp-fit-0.5": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.5
+    },
+    "comp-fit-0.625": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.625
+    },
+    "comp-fit-0.75": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.75
+    },
+    "comp-fit-0.875": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.875
+    },
+    "comp-fit-1": {
+      "type": "glossy_comp_fit",
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "roughness": 1
+    }
+  }
+}

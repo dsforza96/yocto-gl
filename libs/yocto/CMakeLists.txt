@@ -15,6 +15,8 @@ add_library(yocto
   ext/tinyexr.h ext/tinyexr.cpp
 )
 
+target_link_libraries(yocto "${TORCH_LIBRARIES}")
+
 set_target_properties(yocto PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
 
 if(UNIX AND NOT APPLE)
